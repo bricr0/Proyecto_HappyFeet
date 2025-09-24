@@ -52,15 +52,20 @@ INSERT INTO mascotas (dueno_id, nombre, raza_id, fecha_nacimiento, sexo, microch
 (4, 'Nala', 4, '2020-11-05', 'Hembra', 'CHIP004', 'Ciertos alimentos', 'Asma leve', 5.2),
 (5, 'Rocky', 1, '2022-05-30', 'Macho', 'CHIP005', 'Ninguna', 'Vacunación pendiente', 18.7);
 
+
+-- Inserto mascota
+INSERT INTO mascotas (dueno_id, nombre, raza_id, fecha_nacimiento, sexo, peso_kg)
+VALUES (1, 'Firulais', 3, '2020-05-01', 'Macho', 15.5);
+
+-- Recupero el ID generado (supongamos que fue 6)
+SELECT LAST_INSERT_ID();
+
+-- Inserto historial propietario
+INSERT INTO mascota_propietarios (mascota_id, dueno_id, fecha_inicio, fecha_fin)
+VALUES (6, 1, NOW(), NULL);
 -- ------------------------------
 -- Historial de Propietarios
 -- ------------------------------
-INSERT INTO mascota_propietarios (mascota_id, dueno_id, fecha_inicio, fecha_fin) VALUES
-(1, 1, '2022-01-15 10:00:00', NULL),
-(2, 2, '2021-03-20 14:30:00', NULL),
-(3, 3, '2023-02-10 09:15:00', NULL),
-(4, 4, '2022-11-15 16:45:00', '2023-06-01 12:00:00'),
-(5, 5, '2023-04-01 11:20:00', NULL);
 
 -- ------------------------------
 -- Veterinarios
@@ -106,21 +111,23 @@ INSERT INTO alertas_inventario (inventario_id, tipo_alerta, mensaje, leido) VALU
 -- Citas
 -- ------------------------------
 INSERT INTO citas (mascota_id, fecha_hora, estado_id, veterinario_id, motivo, observaciones) VALUES
-(1, '2024-01-15 10:00:00', 1, 1, 'vacunacion', 'Primera vacuna anual'),
+(6, '2024-01-15 10:00:00', 1, 1, 'vacunacion', 'Primera vacuna anual'),
 (2, '2024-01-16 11:30:00', 2, 2, 'consulta_general', 'Control dermatológico'),
 (3, '2024-01-17 09:00:00', 4, 3, 'control', 'Revisión post-operatoria'),
 (4, '2024-01-18 16:00:00', 1, 4, 'urgencia', 'Problemas respiratorios'),
 (5, '2024-01-19 12:30:00', 3, 5, 'estetica', 'Baño y corte de pelo');
 
+SELECT * FROM mascotas;
+SELECT * FROM citas c;
 -- ------------------------------
 -- Consultas
 -- ------------------------------
 INSERT INTO consultas (cita_id, veterinario_id, diagnostico, tratamiento_recomendado) VALUES
-(1, 1, 'Animal sano, peso adecuado', 'Vacuna aplicada, próximo control en 1 año'),
-(2, 2, 'Dermatitis alérgica', 'Antihistamínico y champú especial'),
-(3, 3, 'Recuperación satisfactoria', 'Continuar con medicación por 5 días'),
-(4, 4, 'Crisis asmática leve', 'Broncodilatador y reposo'),
-(5, 5, 'Cancelada por cliente', 'Reprogramar para próxima semana');
+(11, 1, 'Animal sano, peso adecuado', 'Vacuna aplicada, próximo control en 1 año'),
+(12, 2, 'Dermatitis alérgica', 'Antihistamínico y champú especial'),
+(13, 3, 'Recuperación satisfactoria', 'Continuar con medicación por 5 días'),
+(14, 4, 'Crisis asmática leve', 'Broncodilatador y reposo'),
+(15, 5, 'Cancelada por cliente', 'Reprogramar para próxima semana');
 
 -- ------------------------------
 -- Facturas
@@ -135,18 +142,21 @@ INSERT INTO facturas (dueno_id, subtotal, impuestos, total, estado) VALUES
 -- ------------------------------
 -- Elementos de Factura
 -- ------------------------------
+SELECT * from inventario i;
 INSERT INTO elementos_factura (factura_id, producto_id, descripcion, cantidad, precio_unitario, tipo) VALUES
-(1, 1, 'Vacuna Triple Felina', 1, 45.00, 'producto'),
-(2, 2, 'Antiparasitario Interno', 2, 25.50, 'producto'),
+(1, NULL, 'Vacuna Triple Felina', 1, 45.00, 'producto'),
+(2, NULL, 'Antiparasitario Interno', 2, 25.50, 'producto'),
 (2, NULL, 'Consulta veterinaria', 1, 34.50, 'servicio'),
-(3, 3, 'Pienso Premium 15kg', 2, 60.00, 'producto'),
+(3, NULL, 'Pienso Premium 15kg', 2, 60.00, 'producto'),
 (4, NULL, 'Urgencia veterinaria', 1, 60.00, 'servicio');
+
+
 
 -- ------------------------------
 -- Contratos de Adopción
 -- ------------------------------
 INSERT INTO contratos_adopcion (mascota_id, adoptante_id, contenido, firmado, firmado_por, tipo_contrato) VALUES
-(1, 1, 'Contrato de adopción definitiva para Max...', TRUE, 'María González', 'adopcion_definitiva'),
+(2, 1, 'Contrato de adopción definitiva para Max...', TRUE, 'María González', 'adopcion_definitiva'),
 (2, 2, 'Contrato de acogida temporal para Luna...', TRUE, 'Carlos López', 'acogida'),
 (3, 3, 'Contrato de adopción para Simba...', FALSE, NULL, 'adopcion_definitiva'),
 (4, 4, 'Contrato temporal para Nala...', TRUE, 'David Fernández', 'adopcion_temporal'),
@@ -155,12 +165,13 @@ INSERT INTO contratos_adopcion (mascota_id, adoptante_id, contenido, firmado, fi
 -- ------------------------------
 -- Adopciones
 -- ------------------------------
+select * from contratos_adopcion ca ;
 INSERT INTO adopciones (mascota_id, adoptante_id, tipo, estado, contrato_id) VALUES
-(1, 1, 'adopcion', 'completada', 1),
-(2, 2, 'temporal', 'completada', 2),
-(3, 3, 'adopcion', 'pendiente', 3),
-(4, 4, 'temporal', 'completada', 4),
-(5, 5, 'adopcion', 'completada', 5);
+(2, 2, 'adopcion', 'completada', 11),
+(2, 2, 'temporal', 'completada', 12),
+(3, 3, 'adopcion', 'pendiente', 13),
+(4, 4, 'temporal', 'completada', 14),
+(5, 5, 'adopcion', 'completada', 15);
 
 -- ------------------------------
 -- Jornadas de Vacunación
@@ -176,7 +187,7 @@ INSERT INTO jornadas_vacunacion (nombre, fecha, ubicacion, estado, creado_por) V
 -- Asistencias a Jornadas
 -- ------------------------------
 INSERT INTO jornada_asistencias (jornada_id, mascota_id, dueno_id, vacunado, producto_id, estado) VALUES
-(1, 1, 1, TRUE, 1, 'asistio'),
+(1, 2, 1, TRUE, 1, 'asistio'),
 (1, 2, 2, FALSE, NULL, 'no_asistio'),
 (2, 3, 3, TRUE, 1, 'asistio'),
 (3, 4, 4, TRUE, 1, 'asistio'),
@@ -221,3 +232,5 @@ INSERT INTO redenciones_puntos (dueno_id, puntos_usados, descripcion, estado) VA
 (3, 500, 'Descuento en esterilización', 'aplicada'),
 (4, 150, 'Collar antipulgas', 'cancelada'),
 (5, 1000, 'Pienso premium gratuito', 'aplicada');
+
+SELECT * FROM mascotas m;
