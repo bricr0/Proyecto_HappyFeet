@@ -19,10 +19,12 @@ public class MascotaView {
         while (!opcion.equals("0")){
             System.out.println("\n --- GESTION DE MASCOTAS (CONSOLA) ---");
             System.out.println("""
-                        1. Listar mascotas
-                        2. Agregar una mascota
-                        3. Actualizar una mascota
-                        4. Eliminar una mascota
+                        1. Listar mascotas.
+                        2. Agregar una mascota.
+                        3. Actualizar una mascota.
+                        4. Eliminar una mascota.
+                        5. Agregar raza.
+                        6. Agregar especie.
                         0. salir
                         >>> Elige una opcion:""");
             try {
