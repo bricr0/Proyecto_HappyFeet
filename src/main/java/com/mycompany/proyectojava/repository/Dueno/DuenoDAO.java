@@ -39,11 +39,11 @@ public class DuenoDAO implements IDueno{
         String sql = "SELECT * FROM duenos";
         try (Statement stmt = conexion.createStatement(); ResultSet rs = stmt.executeQuery(sql)){
             while (rs.next()){
-                Dueno dueno = new Dueno(rs.getString("nombre"),
-                        rs.getString("documento"),
+                Dueno dueno = new Dueno(rs.getString("nombre_completo"),
+                        rs.getString("documento_identidad"),
                         rs.getString("direccion"),
                         rs.getString("telefono"),
-                        rs.getString("email"),
+                        rs.getString("correo_electronico"),
                         rs.getString("estado"),
                         rs.getString("contacto_emergencia"));
                 lst.add(dueno);
@@ -60,8 +60,8 @@ public class DuenoDAO implements IDueno{
         String sql = "SELECT * FROM duenos";
         try (Statement stmt = conexion.createStatement(); ResultSet rs = stmt.executeQuery(sql)){
             while (rs.next()){
-                Dueno dueno = new Dueno(rs.getString("nombre"),
-                        rs.getString("documento"),
+                Dueno dueno = new Dueno(rs.getString("nombre_completo"),
+                        rs.getString("documento_identidad"),
                         rs.getString("direccion"),
                         rs.getString("telefono"),
                         rs.getString("correo_electronico"),
@@ -84,11 +84,11 @@ public class DuenoDAO implements IDueno{
         String sql = "SELECT * FROM duenos";
         try (Statement stmt = conexion.createStatement(); ResultSet rs = stmt.executeQuery(sql)){
             while (rs.next()){
-                Dueno dueno = new Dueno(rs.getString("nombre"),
-                        rs.getString("documento"),
+                Dueno dueno = new Dueno(rs.getString("nombre_completo"),
+                        rs.getString("documento_identidad"),
                         rs.getString("direccion"),
                         rs.getString("telefono"),
-                        rs.getString("email"),
+                        rs.getString("correo_electronico"),
                         rs.getString("estado"),
                         rs.getString("contacto_emergencia"));
                 lst.add(dueno);
