@@ -25,25 +25,23 @@ public class DuenoController {
 //    -------------------------------------------------- 2. LISTAR DUEÑOS ------------------------------------------------
 
     public void listarDuenos() {
-        for (Dueno dueno : duenoDao.listarTodos()) {
-            System.out.println(dueno);
-        }
+
+        duenoDao.listarTodos().forEach(d -> System.out.println(d));
     }
 
 //    ----------------------------------------------------3. LISTAR DUEÑOS ACTIVOS ------------------------------------------------
 
     public void listarDuenosActivos() {
-        for (Dueno dueno : duenoDao.listarActivos()) {
-            System.out.println(dueno);
-        }
+
+        duenoDao.listarActivos().forEach(  d -> System.out.println(d));
     }
 
 //    ----------------------------------------------------4. LISTAR DUEÑOS INACTIVOS ------------------------------------------------
 
     public void listarDuenosInactivos() {
-        for (Dueno dueno : duenoDao.listarInactivos()) {
-            System.out.println(dueno);
-        }
+
+        duenoDao.listarInactivos().forEach( d -> System.out.println(d));
+
     }
 
 //    ----------------------------------------------------5. BUSCAR DUEÑO -------------------------------------------------

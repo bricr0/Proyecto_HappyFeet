@@ -128,7 +128,7 @@ public class DuenoDAO implements IDueno{
 
     @Override
     public void actualizarDueno(Dueno dueno) {
-        String sql = "UPDATE duenos SET nombre_completo = ?, documento_identidad = ?, direccion = ?, telefono = ?, correo_electronico = ?, contacto_emergencia = ? WHERE id = ?";
+        String sql = "UPDATE duenos SET nombre_completo = ?, documento_identidad = ?, direccion = ?, telefono = ?, correo_electronico = ?, contacto_emergencia = ? WHERE documento_identidad = ?";
         try (PreparedStatement pstmt = conexion.prepareStatement(sql)){
             pstmt.setString(1, dueno.getNombre());
             pstmt.setString(2, dueno.getDocumento());
@@ -136,7 +136,7 @@ public class DuenoDAO implements IDueno{
             pstmt.setString(4, dueno.getTelefono());
             pstmt.setString(5, dueno.getEmail());
             pstmt.setString(6, dueno.getContacto_emergencia());
-            pstmt.setInt(7, dueno.getId());
+            pstmt.setString(7, dueno.getDocumento());
             pstmt.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException("Error al actualizar un dueño: " + e);
