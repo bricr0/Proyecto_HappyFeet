@@ -1,9 +1,8 @@
 -- ============================================
 --   CLÍNICA VETERINARIA - BASE DE DATOS
 -- ============================================
-
-CREATE DATABASE IF NOT EXISTS `clinica_veterinaria`;
-USE `clinica_veterinaria`;
+CREATE DATABASE HappyFeetDB;
+USE `HappyFeetDB`;
 
 -- ------------------------------
 -- Catálogos
@@ -421,25 +420,34 @@ DELIMITER ;
 DELIMITER $$
 
 -- Deducción de stock y validación
+
 CREATE TRIGGER trg_elemento_factura_before_insert
 BEFORE INSERT ON elementos_factura
 FOR EACH ROW
 BEGIN
+  -- Declaraciones SIEMPRE primero
+  DECLARE v_stock INT;
+  DECLARE v_venc DATE;
+
   IF NEW.producto_id IS NOT NULL THEN
-    DECLARE v_stock INT;
-    DECLARE v_venc DATE;
-    SELECT cantidad_stock, fecha_vencimiento INTO v_stock, v_venc
-    FROM inventario WHERE id = NEW.producto_id FOR UPDATE;
+    SELECT cantidad_stock, fecha_vencimiento
+    INTO v_stock, v_venc
+    FROM inventario
+    WHERE id = NEW.producto_id
+    FOR UPDATE;
 
     IF v_stock < NEW.cantidad THEN
-      SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Stock insuficiente';
+      SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'Stock insuficiente';
     END IF;
 
     IF v_venc IS NOT NULL AND v_venc < CURDATE() THEN
-      SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Producto vencido';
+      SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'Producto vencido';
     END IF;
 
-    UPDATE inventario SET cantidad_stock = cantidad_stock - NEW.cantidad
+    UPDATE inventario
+    SET cantidad_stock = cantidad_stock - NEW.cantidad
     WHERE id = NEW.producto_id;
 
     IF (SELECT cantidad_stock FROM inventario WHERE id = NEW.producto_id)
@@ -502,3 +510,6 @@ DELIMITER ;
 -- ------------------------------
 INSERT IGNORE INTO cita_estados (id, nombre) VALUES
 (1,'Programada'), (2,'Finalizada'), (3,'Cancelada'), (4,'En Proceso'), (5,'Reprogramada');
+
+ALTER TABLE duenos
+ADD COLUMN estado ENUM('activo', 'inactivo') NOT NULL DEFAULT 'activo';
