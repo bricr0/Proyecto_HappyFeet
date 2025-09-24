@@ -6,7 +6,7 @@ public class ConexionDBSingleton {
     private static String host = "jdbc:mysql://localhost:3306/";
     private static String user = "root";
     private static String password = "sebastian";
-    private static String db = "pruebaLogin";
+    private static String db = "HappyFeetDB";
 
     private static String strConn = host + db;
     private static Connection connection;
@@ -23,7 +23,6 @@ public class ConexionDBSingleton {
             try {
                 if (connection == null || connection.isClosed()){
                     connection = DriverManager.getConnection(strConn, user, password);
-                    System.out.println("Conexión exitosa");
                 }
             } catch (SQLException e){
                 connection = null;
