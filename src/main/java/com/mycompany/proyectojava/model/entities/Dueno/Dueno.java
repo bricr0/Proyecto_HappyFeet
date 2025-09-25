@@ -11,6 +11,17 @@ public class Dueno {
     private String contacto_emergencia;
 
 
+    public Dueno(Integer id, String nombre, String documento, String direccion, String telefono, String email, String estado, String contacto_emergencia) {
+        this.id = id;
+        this.nombre = nombre;
+        this.documento = documento;
+        this.direccion = direccion;
+        this.telefono = telefono;
+        this.email = email;
+        this.estado = estado;
+        this.contacto_emergencia = contacto_emergencia;
+    }
+
     public Dueno(String nombre, String documento, String direccion, String telefono, String email, String estado, String contacto_emergencia) {
         this.nombre = nombre;
         this.documento = documento;
@@ -19,6 +30,10 @@ public class Dueno {
         this.email = email;
         this.estado = estado;
         this.contacto_emergencia = contacto_emergencia;
+    }
+
+    public Dueno() {
+
     }
 
     // Getters and Setters

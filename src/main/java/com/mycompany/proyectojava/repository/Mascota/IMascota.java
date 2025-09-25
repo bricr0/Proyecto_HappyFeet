@@ -29,11 +29,6 @@ public interface IMascota {
 //    -----------------------------------------------------------7. ELIMINAR MASCOTA ------------------------------------------------
     void eliminarMascota(String microchip);
 
-//    -----------------------------------------------------------8. CREAR ESPECIE ------------------------------------------------
-    void crearEspecie(String especie);
-
-//    -----------------------------------------------------------9. CREAR RAZA ------------------------------------------------
-    void crearRaza(String raza, String especie);
 
 }
 

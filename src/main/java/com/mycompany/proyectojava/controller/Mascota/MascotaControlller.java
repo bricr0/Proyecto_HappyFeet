@@ -11,6 +11,8 @@ public class MascotaControlller {
         this.mascotaDao = mascotaDao;
     }
 
+//    ----------------------------------------------------1. AGREGAR MASCOTA ------------------------------------------------
+
     public void agregarMascota(Mascota mascota) {
         if (!validarMascota(mascota)) {
             throw new IllegalArgumentException("Datos de mascota inválidos");
@@ -18,6 +20,58 @@ public class MascotaControlller {
         mascotaDao.agregarMascota(mascota);
         System.out.println("Mascota creada con éxito");
     }
+
+//    ----------------------------------------------------2. LISTAR MASCOTAS ------------------------------------------------
+
+    public void listarMascotas() {
+
+        mascotaDao.listarTodas().forEach(m -> System.out.println(m));
+
+    }
+
+//    ----------------------------------------------------3. LISTAR MASCOTAS ACTIVAS ------------------------------------------------
+
+    public void listarMascotasActivas() {
+
+        mascotaDao.listarActivas().forEach(m -> System.out.println(m));
+    }
+
+//    ----------------------------------------------------4. LISTAR MASCOTAS INACTIVAS ------------------------------------------------
+
+    public void listarMascotasInactivas() {
+
+        mascotaDao.listarInactivas().forEach(m -> System.out.println(m));
+    }
+
+//    ----------------------------------------------------5. BUSCAR MASCOTA -------------------------------------------------
+
+    public Mascota buscarMascotaPorMicrochip(String microchip) {
+        if (microchip == null || microchip.trim().isEmpty()) {
+            throw new IllegalArgumentException("Microchip inválido");
+        }
+        return mascotaDao.listarPorMicrochip(microchip);
+    }
+
+//    ----------------------------------------------------6. ACTUALIZAR MASCOTA -------------------------------------------------
+
+    public void actualizarMascota(Mascota mascota) {
+        if (!validarMascota(mascota)) {
+            throw new IllegalArgumentException("Datos de mascota inválidos");
+        }
+        mascotaDao.actualizarMascota(mascota);
+        System.out.println("Mascota actualizada con éxito");
+    }
+
+//    -------------------------------------------------------7. ELIMINAR MASCOTA -------------------------------------------------
+
+    public void eliminarMascota(String microchip) {
+        if (microchip == null || microchip.trim().isEmpty()) {
+            throw new IllegalArgumentException("Microchip inválido");
+        }
+        mascotaDao.eliminarMascota(microchip);
+        System.out.println("Mascota eliminada con éxito");
+    }
+//    -------------------------------------------------------- VALIDACIONES ------------------------------------------------
 
     private boolean validarMascota(Mascota mascota) {
         if (mascota == null) {

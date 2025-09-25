@@ -111,7 +111,8 @@ public class DuenoDAO implements IDueno{
             pstmt.setString(1, documento);
             try  (ResultSet rs = pstmt.executeQuery()){
                 while (rs.next()){
-                    dueno = new Dueno(rs.getString("nombre_completo"),
+                    dueno = new Dueno(rs.getInt("id"),
+                            rs.getString("nombre_completo"),
                             rs.getString("documento_identidad"),
                             rs.getString("direccion"),
                             rs.getString("telefono"),
