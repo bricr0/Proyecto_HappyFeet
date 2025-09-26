@@ -10,6 +10,7 @@ public class Dueno {
     private String estado;
     private String contacto_emergencia;
 
+
     public Dueno(Integer id, String nombre, String documento, String direccion, String telefono, String email, String estado, String contacto_emergencia) {
         this.id = id;
         this.nombre = nombre;
@@ -29,6 +30,10 @@ public class Dueno {
         this.email = email;
         this.estado = estado;
         this.contacto_emergencia = contacto_emergencia;
+    }
+
+    public Dueno() {
+
     }
 
     // Getters and Setters
@@ -57,9 +62,6 @@ public class Dueno {
         return documento;
     }
 
-    public void setDocumento(String documento) {
-        this.documento = documento;
-    }
 
     public String getDireccion() {
         return direccion;
@@ -95,14 +97,12 @@ public class Dueno {
 
     @Override
     public String toString() {
-        return "Dueno{" +
-                "id=" + id +
-                ", nombre='" + nombre + '\'' +
-                ", documento='" + documento + '\'' +
-                ", direccion='" + direccion + '\'' +
-                ", telefono='" + telefono + '\'' +
-                ", email='" + email + '\'' +
-                ", contacto_emergencia='" + contacto_emergencia + '\'' +
-                '}';
+        return  "\n| nombre=                  " + nombre +
+                "\n| documento=               " + documento +
+                "\n| direccion=               " + direccion +
+                "\n| telefono=                " + telefono +
+                "\n| email=                   " + email +
+                "\n| contacto_emergencia=     " + contacto_emergencia +
+                "\n****************************************************************";
     }
 }
