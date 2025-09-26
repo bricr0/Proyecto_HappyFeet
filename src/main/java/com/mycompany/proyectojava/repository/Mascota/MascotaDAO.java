@@ -253,17 +253,15 @@ public class MascotaDAO implements IMascota {
 
     @Override
     public void actualizarMascota(Mascota mascota) {
-        String sql = "UPDATE mascotas SET dueno_id = ?, nombre = ?, raza_id = ?, fecha_nacimiento = ?, sexo = ?, alergias = ?, condiciones_preexistentes = ?, peso_kg = ? WHERE microchip = ?";
+        String sql = "UPDATE mascotas SET  nombre = ?,  fecha_nacimiento = ?, sexo = ?, alergias = ?, condiciones_preexistentes = ?, peso_kg = ? WHERE microchip = ?";
         try (PreparedStatement pstmt = conexion.prepareStatement(sql)) {
-            pstmt.setInt(1, mascota.getDueno_id());
-            pstmt.setString(2, mascota.getNombre());
-            pstmt.setInt(3, mascota.getRaza_id());
-            pstmt.setDate(4, new java.sql.Date(mascota.getFecha_nacimiento().getTime()));
-            pstmt.setString(5, mascota.getSexo());
-            pstmt.setString(6, mascota.getAlergias());
-            pstmt.setString(7, mascota.getCondiciones_preexistentes());
-            pstmt.setDouble(8, mascota.getPeso_kg());
-            pstmt.setString(9, mascota.getMicrochip());
+            pstmt.setString(1, mascota.getNombre());
+            pstmt.setDate(2, new java.sql.Date(mascota.getFecha_nacimiento().getTime()));
+            pstmt.setString(3, mascota.getSexo());
+            pstmt.setString(4, mascota.getAlergias());
+            pstmt.setString(5, mascota.getCondiciones_preexistentes());
+            pstmt.setDouble(6, mascota.getPeso_kg());
+            pstmt.setString(7, mascota.getMicrochip());
             pstmt.executeUpdate();
         } catch (SQLException e){
             throw new RuntimeException("Error al actualizar una mascota: " + e);

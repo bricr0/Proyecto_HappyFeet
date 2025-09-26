@@ -84,16 +84,6 @@ public class MascotaControlller {
             return false;
         }
 
-        if (mascota.getDueno_id() == null || mascota.getDueno_id() <= 0) {
-            System.out.println("❌ ID de dueño inválido");
-            return false;
-        }
-
-        if (mascota.getRaza_id() == null || mascota.getRaza_id() <= 0) {
-            System.out.println("❌ ID de raza inválido");
-            return false;
-        }
-
         if (mascota.getSexo() == null ||
                 !(mascota.getSexo().equalsIgnoreCase("Macho") || mascota.getSexo().equalsIgnoreCase("Hembra"))) {
             System.out.println("❌ Sexo inválido (usa 'M' o 'F')");

@@ -243,30 +243,52 @@ public class MascotaView {
         String microchip = input.nextLine();
         Mascota mascotaExistente = controller.buscarMascotaPorMicrochip(microchip);
         if (mascotaExistente == null) {
-            System.out.println("No se encontró ninguna mascota con el microchip: " + microchip);
+            System.out.println("❌ No se encontró ninguna mascota con el microchip: " + microchip);
             return;
         }
 
-        System.out.print("Nuevo nombre (actual: " + mascotaExistente.getNombre() + "): ");
-        String nombre = input.nextLine();
-        if (!nombre.trim().isEmpty()) {
-            mascotaExistente.setNombre(nombre);
+        while (true) {
+            System.out.print("Nuevo nombre (actual: " + mascotaExistente.getNombre() + "): ");
+            String nombre = input.nextLine();
+            if (nombre.trim().isEmpty()) break;
+            if (nombre.trim().length() > 0) {
+                mascotaExistente.setNombre(nombre);
+                break;
+            } else {
+                System.out.println("❌ Nombre inválido, intente de nuevo.");
+            }
         }
 
-        System.out.print("Nueva fecha de nacimiento (yyyy-mm-dd) (actual: " + mascotaExistente.getFecha_nacimiento() + "): ");
-        String fechaStr = input.nextLine();
-        if (!fechaStr.trim().isEmpty()) {
-            Date fechaNacimiento = Date.valueOf(fechaStr);
-            mascotaExistente.setFecha_nacimiento(fechaNacimiento);
+        while (true) {
+            System.out.print("Nueva fecha de nacimiento (yyyy-mm-dd) (actual: " + mascotaExistente.getFecha_nacimiento() + "): ");
+            String fechaStr = input.nextLine();
+            if (fechaStr.trim().isEmpty()) break;
+            try {
+                Date fechaNacimiento = Date.valueOf(fechaStr);
+                if (fechaNacimiento.after(new java.util.Date())) {
+                    System.out.println("❌ La fecha no puede estar en el futuro.");
+                } else {
+                    mascotaExistente.setFecha_nacimiento(fechaNacimiento);
+                    break;
+                }
+            } catch (IllegalArgumentException e) {
+                System.out.println("❌ Formato inválido. Use yyyy-mm-dd.");
+            }
         }
 
-        System.out.print("Nuevo sexo (Macho/Hembra) (actual: " + mascotaExistente.getSexo() + "): ");
-        String sexo = input.nextLine();
-        if (!sexo.trim().isEmpty()) {
-            mascotaExistente.setSexo(sexo);
+        while (true) {
+            System.out.print("Nuevo sexo (Macho/Hembra) (actual: " + mascotaExistente.getSexo() + "): ");
+            String sexo = input.nextLine();
+            if (sexo.trim().isEmpty()) break;
+            if (sexo.equalsIgnoreCase("Macho") || sexo.equalsIgnoreCase("Hembra")) {
+                mascotaExistente.setSexo(sexo);
+                break;
+            } else {
+                System.out.println("❌ Sexo inválido, debe ser 'Macho' o 'Hembra'.");
+            }
         }
 
-        System.out.print("Nueva alergias (actual: " + mascotaExistente.getAlergias() + "): ");
+        System.out.print("Nuevas alergias (actual: " + mascotaExistente.getAlergias() + "): ");
         String alergias = input.nextLine();
         if (!alergias.trim().isEmpty()) {
             mascotaExistente.setAlergias(alergias);
@@ -278,11 +300,21 @@ public class MascotaView {
             mascotaExistente.setCondiciones_preexistentes(condiciones);
         }
 
-        System.out.print("Nuevo peso (kg) (actual: " + mascotaExistente.getPeso_kg() + "): ");
-        String pesoStr = input.nextLine();
-        if (!pesoStr.trim().isEmpty()) {
-            Double peso = Double.parseDouble(pesoStr);
-            mascotaExistente.setPeso_kg(peso);
+        while (true) {
+            System.out.print("Nuevo peso (kg) (actual: " + mascotaExistente.getPeso_kg() + "): ");
+            String pesoStr = input.nextLine();
+            if (pesoStr.trim().isEmpty()) break;
+            try {
+                double peso = Double.parseDouble(pesoStr);
+                if (peso > 0) {
+                    mascotaExistente.setPeso_kg(peso);
+                    break;
+                } else {
+                    System.out.println("❌ El peso debe ser mayor que 0.");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("❌ Número inválido, intente de nuevo.");
+            }
         }
 
         System.out.print("Nuevas notas médicas (actual: " + mascotaExistente.getNotas_medicas() + "): ");
@@ -293,6 +325,7 @@ public class MascotaView {
 
         controller.actualizarMascota(mascotaExistente);
         System.out.println("✅ Mascota actualizada con éxito.");
+
     }
 
 //    -------------------------------------------------------- 4. ELIMINAR MASCOTA ------------------------------------------------
