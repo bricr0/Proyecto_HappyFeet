@@ -35,4 +35,3 @@ public interface IDueno {
 //    -----------------------------------------------------8. VER MASCOTAS DE UN DUEÑO ------------------------------------------------
     void verMascotasDeUnDueno(String documento);
 }
-

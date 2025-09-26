@@ -1,5 +1,8 @@
 package com.mycompany.proyectojava.model.entities.Mascota;
 
+import com.mycompany.proyectojava.model.entities.Dueno.Dueno;
+import com.mycompany.proyectojava.model.entities.Razas.Razas;
+
 import java.util.Date;
 
 public class Mascota {
@@ -15,8 +18,11 @@ public class Mascota {
     private String condiciones_preexistentes;
     private Double peso_kg;
     private String notas_medicas;
+    private Dueno dueno;
+    private Razas raza;
+    private String estado;
 
-    public Mascota(Integer id, Integer dueno_id, String nombre, Integer raza_id, Date fecha_nacimiento, String sexo, String microchip, String foto_url, String alergias, String condiciones_preexistentes, Double peso_kg, String notas_medicas) {
+    public Mascota(Integer id, Integer dueno_id, String nombre, Integer raza_id, Date fecha_nacimiento, String sexo, String microchip, String foto_url, String alergias, String condiciones_preexistentes, Double peso_kg, String notas_medicas, String estado) {
         this.id = id;
         this.dueno_id = dueno_id;
         this.nombre = nombre;
@@ -29,9 +35,12 @@ public class Mascota {
         this.condiciones_preexistentes = condiciones_preexistentes;
         this.peso_kg = peso_kg;
         this.notas_medicas = notas_medicas;
+        this.dueno = dueno;
+        this.raza = raza;
+        this.estado = estado;
     }
 
-    public Mascota(Integer dueno_id, String nombre, Integer raza_id, Date fecha_nacimiento, String sexo, String microchip, String foto_url, String alergias, String condiciones_preexistentes, Double peso_kg, String notas_medicas) {
+    public Mascota(Integer dueno_id, String nombre, Integer raza_id, Date fecha_nacimiento, String sexo, String microchip, String foto_url, String alergias, String condiciones_preexistentes, Double peso_kg, String notas_medicas, String estado) {
         this.dueno_id = dueno_id;
         this.nombre = nombre;
         this.raza_id = raza_id;
@@ -43,10 +52,19 @@ public class Mascota {
         this.condiciones_preexistentes = condiciones_preexistentes;
         this.peso_kg = peso_kg;
         this.notas_medicas = notas_medicas;
+        this.estado = estado;
     }
 
     // Getters and Setters
 
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
 
     public Integer getId() {
         return id;
@@ -124,6 +142,22 @@ public class Mascota {
         this.condiciones_preexistentes = condiciones_preexistentes;
     }
 
+    public Dueno getDueno() {
+        return dueno;
+    }
+
+    public void setDueno(Dueno dueno) {
+        this.dueno = dueno;
+    }
+
+    public Razas getRaza() {
+        return raza;
+    }
+
+    public void setRaza(Razas raza) {
+        this.raza = raza;
+    }
+
     public Double getPeso_kg() {
         return peso_kg;
     }
@@ -142,20 +176,20 @@ public class Mascota {
 
     @Override
     public String toString() {
-        return "Mascota{" +
-                "id=" + id +
-                ", dueno_id=" + dueno_id +
-                ", nombre='" + nombre + '\'' +
-                ", raza_id=" + raza_id +
-                ", fecha_nacimiento=" + fecha_nacimiento +
-                ", sexo='" + sexo + '\'' +
-                ", microchip='" + microchip + '\'' +
-                ", foto_url='" + foto_url + '\'' +
-                ", alergias='" + alergias + '\'' +
-                ", condiciones_preexistentes='" + condiciones_preexistentes + '\'' +
-                ", peso_kg=" + peso_kg +
-                ", notas_medicas='" + notas_medicas + '\'' +
-                '}';
+        return  "\n| dueño=                   " + (dueno != null ? dueno.getNombre() : "N/A") +
+                "\n| nombre=                  " + nombre +
+                "\n| raza=                    " + (raza != null ? raza.getNombre() : "N/A") +
+                "\n| fecha_nacimiento=        " + fecha_nacimiento +
+                "\n| sexo=                    " + sexo +
+                "\n| microchip=               " + microchip +
+                "\n| alergias=                " + alergias +
+                "\n| condiciones_preexistentes=" + condiciones_preexistentes +
+                "\n| peso_kg=                 " + peso_kg +
+                "\n| notas_medicas=           " + notas_medicas +
+                "\n****************************************************************";
     }
+
+
+
 
 }

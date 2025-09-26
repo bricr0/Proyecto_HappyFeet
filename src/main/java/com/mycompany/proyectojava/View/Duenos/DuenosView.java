@@ -23,13 +23,13 @@ public class DuenosView {
         while (!opcion.equals("0")){
             System.out.println("\n --- GESTION DE DUEÑOS ---");
             System.out.println("""
-                        1. Agregar un dueño
-                        2. Listar dueños
-                        3. Actualizar un dueño
-                        4. Eliminar un dueño
-                        5. Ver mascotas de un dueño
-                        0. salir
-                        >>> Elige una opcion:""");
+                    1. Agregar un dueño
+                    2. Listar dueños
+                    3. Actualizar un dueño
+                    4. Eliminar un dueño
+                    5. Ver mascotas de un dueño
+                    0. salir
+                    >>> Elige una opcion:""");
             try {
                 opcion = input.nextLine();
 
@@ -54,7 +54,6 @@ public class DuenosView {
                 opcion = "";
             }
         }
-        input.close();
     }
 
 //    --------------------------------------------------------SUBMENU LISTAR DUEÑOS ------------------------------------------------
