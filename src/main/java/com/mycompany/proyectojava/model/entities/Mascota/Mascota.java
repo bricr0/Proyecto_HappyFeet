@@ -22,7 +22,7 @@ public class Mascota {
     private Razas raza;
     private String estado;
 
-    public Mascota(Integer id, Integer dueno_id, String nombre, Integer raza_id, Date fecha_nacimiento, String sexo, String microchip, String foto_url, String alergias, String condiciones_preexistentes, Double peso_kg, String notas_medicas, String estado) {
+    public Mascota(Integer id, Integer dueno_id, String nombre, Integer raza_id, Date fecha_nacimiento, String sexo, String microchip, String foto_url, String alergias, String condiciones_preexistentes, Double peso_kg, String notas_medicas, Dueno dueno, Razas raza, String estado) {
         this.id = id;
         this.dueno_id = dueno_id;
         this.nombre = nombre;
@@ -55,8 +55,10 @@ public class Mascota {
         this.estado = estado;
     }
 
-    // Getters and Setters
+    public Mascota() {
 
+    }
+    // Getters and Setters
 
     public String getEstado() {
         return estado;
@@ -64,6 +66,10 @@ public class Mascota {
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Integer getId() {
@@ -188,8 +194,4 @@ public class Mascota {
                 "\n| notas_medicas=           " + notas_medicas +
                 "\n****************************************************************";
     }
-
-
-
-
 }

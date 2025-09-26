@@ -62,7 +62,6 @@ public class MascotaDAO implements IMascota {
 
                 Mascota mascota = new Mascota(
                         null,
-                        null,
                         re.getString("mascota_nombre"),
                         null,
                         re.getDate("fecha_nacimiento"),
@@ -110,7 +109,6 @@ public class MascotaDAO implements IMascota {
              ResultSet re = stmt.executeQuery(sql)) {
             while (re.next()) {
                 Mascota mascota = new Mascota(
-                        re.getInt("id"),
                         null,
                         re.getString("nombre"),
                         null,
@@ -124,7 +122,6 @@ public class MascotaDAO implements IMascota {
                         re.getString("notas_medicas"),
                         re.getString("estado")
                 );
-
                 Dueno dueno = new Dueno();
                 dueno.setNombre(re.getString("dueno_nombre"));
                 mascota.setDueno(dueno);
@@ -164,7 +161,6 @@ public class MascotaDAO implements IMascota {
              ResultSet re = stmt.executeQuery(sql)) {
             while (re.next()) {
                 Mascota mascota = new Mascota(
-                        re.getInt("id"),
                         null,
                         re.getString("nombre"),
                         null,
@@ -178,7 +174,6 @@ public class MascotaDAO implements IMascota {
                         re.getString("notas_medicas"),
                         re.getString("estado")
                 );
-
                 Dueno dueno = new Dueno();
                 dueno.setNombre(re.getString("dueno_nombre"));
                 mascota.setDueno(dueno);
@@ -202,44 +197,54 @@ public class MascotaDAO implements IMascota {
     public Mascota listarPorMicrochip(String microchip) {
         Mascota mascota = null;
         String sql = """
-        SELECT m.id, m.nombre, m.fecha_nacimiento, m.sexo, m.microchip,
-               m.alergias, m.condiciones_preexistentes, m.peso_kg,
-               m.notas_medicas, m.estado,
-               d.nombre_completo AS dueno_nombre,
-               r.nombre AS raza_nombre
-        FROM mascotas m
-        JOIN duenos d ON m.dueno_id = d.id
-        LEFT JOIN razas r ON m.raza_id = r.id
-        WHERE m.microchip = ?
+                SELECT m.id,\s
+                       m.dueno_id,\s
+                       m.raza_id,
+                       m.nombre,\s
+                       m.fecha_nacimiento,\s
+                       m.sexo,\s
+                       m.microchip,
+                       m.foto_url,
+                       m.alergias,\s
+                       m.condiciones_preexistentes,\s
+                       m.peso_kg,
+                       m.notas_medicas,\s
+                       m.estado,
+                       d.nombre_completo AS dueno_nombre,
+                       r.nombre AS raza_nombre
+                FROM mascotas m
+                JOIN duenos d ON m.dueno_id = d.id
+                LEFT JOIN razas r ON m.raza_id = r.id
+                WHERE m.microchip = ?
     """;
 
         try (PreparedStatement pstmt = conexion.prepareStatement(sql)) {
             pstmt.setString(1, microchip);
             try (ResultSet re = pstmt.executeQuery()) {
                 if (re.next()) {
+                    Dueno dueno = new Dueno();
+                    dueno.setNombre(re.getString("dueno_nombre"));
+
+                    Razas raza = new Razas();
+                    raza.setNombre(re.getString("raza_nombre"));
+
                     mascota = new Mascota(
                             re.getInt("id"),
-                            null,
+                            re.getInt("dueno_id"),
                             re.getString("nombre"),
-                            null,
+                            re.getInt("raza_id"),
                             re.getDate("fecha_nacimiento"),
                             re.getString("sexo"),
                             re.getString("microchip"),
-                            null,
+                            re.getString("foto_url"),
                             re.getString("alergias"),
                             re.getString("condiciones_preexistentes"),
                             re.getDouble("peso_kg"),
                             re.getString("notas_medicas"),
+                            dueno,
+                            raza,
                             re.getString("estado")
                     );
-
-                    Dueno dueno = new Dueno();
-                    dueno.setNombre(re.getString("dueno_nombre"));
-                    mascota.setDueno(dueno);
-
-                    Razas raza = new Razas();
-                    raza.setNombre(re.getString("raza_nombre"));
-                    mascota.setRaza(raza);
                 }
             }
         } catch (Exception e) {
