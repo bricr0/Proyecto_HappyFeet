@@ -1,29 +1,41 @@
 package com.mycompany.proyectojava;
 
-import com.mycompany.proyectojava.View.Duenos.DuenosView;
-import com.mycompany.proyectojava.View.Mascota.MascotaView;
-import com.mycompany.proyectojava.controller.Dueno.DuenoController;
-import com.mycompany.proyectojava.repository.Dueno.DuenoDAO;
-import com.mycompany.proyectojava.repository.Dueno.IDueno;
-//import com.mycompany.proyectojava.controller.Mascota.MascotaControlller;
-//import com.mycompany.proyectojava.repository.Mascota.IMascota;
-//import com.mycompany.proyectojava.repository.Mascota.MascotaDAO;
+import com.mycompany.proyectojava.View.Citas.CitasView;
+import com.mycompany.proyectojava.View.Consultas.ConsultasView;
+import com.mycompany.proyectojava.config.database.ConexionDBSingleton;
+import com.mycompany.proyectojava.controller.Consultas.ConsultasController;
+import com.mycompany.proyectojava.repository.Citas.CitasDAO;
+import com.mycompany.proyectojava.repository.Citas.ICitas;
+import com.mycompany.proyectojava.repository.Consultas.ConsultasDAO;
+import com.mycompany.proyectojava.repository.Consultas.IConsultas;
+import com.mycompany.proyectojava.service.Citas.CitasService;
+import com.mycompany.proyectojava.controller.Citas.CitasController;
+import com.mycompany.proyectojava.service.Consultas.ConsultasService;
+
+import java.sql.Connection;
 
 public class ProyectoJava {
     public static void main(String[] args) {
+        try {
+            System.out.println("=== SISTEMA DE GESTIÓN DE CITAS VETERINARIAS ===");
+            Connection connection = ConexionDBSingleton.getInstance().getConnection();
+            System.out.println("✓ Conexión a la base de datos establecida");
+            IConsultas consultasDAO = new ConsultasDAO();
+            ICitas citasDAO = new CitasDAO();// Repository/DAO
+            ConsultasService consultasService = new ConsultasService(consultasDAO, citasDAO);// Service
+            ConsultasController consultasController = new ConsultasController(consultasService);// Controller
 
-        IDueno dao = new DuenoDAO();
+            ConsultasView consultasView = new ConsultasView(consultasController);
 
-//        IMascota dao = new MascotaDAO();
-//        MascotaControlller controller = new MascotaControlller(dao);
-//        MascotaView view = new MascotaView(controller);
-//        view.mostrarMenu();
+            System.out.println("Sistema iniciado correctamente\n");
 
-        DuenoController controller = new DuenoController(dao);
+            consultasView.MostrarMenu();
+            connection.close();
+            System.out.println("Sistema finalizado.");
 
-        DuenosView viewDuenos = new DuenosView(controller);
-
-        viewDuenos.MostrarMenu();
-
+        } catch (Exception e) {
+            System.out.println("❌ Error al iniciar el sistema: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 }
