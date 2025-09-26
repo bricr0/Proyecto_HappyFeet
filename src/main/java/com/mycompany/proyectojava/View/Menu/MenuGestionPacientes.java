@@ -4,16 +4,19 @@ import com.mycompany.proyectojava.View.Duenos.DuenosView;
 import com.mycompany.proyectojava.View.Especie.EspecieView;
 import com.mycompany.proyectojava.View.Mascota.MascotaView;
 import com.mycompany.proyectojava.View.Razas.RazasView;
+import com.mycompany.proyectojava.View.TransferenciaDueno.TransferenciaDuenoView;
 import com.mycompany.proyectojava.controller.Dueno.DuenoController;
 import com.mycompany.proyectojava.controller.Especie.EspecieController;
 import com.mycompany.proyectojava.controller.Mascota.MascotaControlller;
 import com.mycompany.proyectojava.controller.Razas.RazaController;
+import com.mycompany.proyectojava.controller.TransferenciaDueno.TransferenciaDuenoController;
 import com.mycompany.proyectojava.repository.Dueno.DuenoDAO;
 import com.mycompany.proyectojava.repository.Dueno.IDueno;
 import com.mycompany.proyectojava.repository.Especie.EspecieDAO;
 import com.mycompany.proyectojava.repository.Especie.IEspecie;
 import com.mycompany.proyectojava.repository.Mascota.MascotaDAO;
 import com.mycompany.proyectojava.repository.Razas.RazasDAO;
+import com.mycompany.proyectojava.repository.TransferenciaDueno.TransferenciaDuenoDAO;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -40,7 +43,13 @@ public class MenuGestionPacientes {
                 funciones.put("1", () -> {
                     IDueno duenoDAO = new DuenoDAO();
                     DuenoController duenoController = new DuenoController(duenoDAO);
-                    DuenosView duenosView = new DuenosView(duenoController);
+
+                    MascotaControlller mascotaControlller = new MascotaControlller(new MascotaDAO());
+
+                    TransferenciaDuenoController transferenciaDuenoController = new TransferenciaDuenoController(new TransferenciaDuenoDAO());
+
+                    TransferenciaDuenoView transferenciaDuenoControllerView = new TransferenciaDuenoView(duenoController, transferenciaDuenoController , mascotaControlller);
+                    DuenosView duenosView = new DuenosView(duenoController, transferenciaDuenoControllerView);
                     duenosView.MostrarMenu();
                 });
 

@@ -1,18 +1,27 @@
 package com.mycompany.proyectojava.model.entities.TransferenciaDueno;
 
 public class TransferenciaDueno {
-    private Integer id;
-    private Integer duenoId;
+    private Integer mascotaId;
     private Integer nuevoDuenoId;
 
-    public TransferenciaDueno(Integer id, Integer duenoId, Integer nuevoDuenoId) {
-        this.id = id;
-        this.duenoId = duenoId;
+    public TransferenciaDueno(Integer mascotaId, Integer nuevoDuenoId) {
+        this.mascotaId = mascotaId;
         this.nuevoDuenoId = nuevoDuenoId;
     }
 
-    public TransferenciaDueno(Integer duenoId, Integer nuevoDuenoId) {
-        this.duenoId = duenoId;
+    public Integer getMascotaId() {
+        return mascotaId;
+    }
+
+    public void setMascotaId(Integer mascotaId) {
+        this.mascotaId = mascotaId;
+    }
+
+    public Integer getNuevoDuenoId() {
+        return nuevoDuenoId;
+    }
+
+    public void setNuevoDuenoId(Integer nuevoDuenoId) {
         this.nuevoDuenoId = nuevoDuenoId;
     }
 }

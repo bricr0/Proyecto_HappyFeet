@@ -1,5 +1,6 @@
 package com.mycompany.proyectojava.View.Duenos;
 
+import com.mycompany.proyectojava.View.TransferenciaDueno.TransferenciaDuenoView;
 import com.mycompany.proyectojava.controller.Dueno.DuenoController;
 import com.mycompany.proyectojava.model.entities.Dueno.Dueno;
 
@@ -10,9 +11,11 @@ import java.util.Scanner;
 public class DuenosView {
     private final DuenoController controller;
     private final Scanner input;
+    private final TransferenciaDuenoView transferenciaDuenoView;
 
-    public DuenosView(DuenoController controller) {
+    public DuenosView(DuenoController controller, TransferenciaDuenoView transferenciaDuenoView) {
         this.controller = controller;
+        this.transferenciaDuenoView = transferenciaDuenoView;
         this.input = new Scanner(System.in);
     }
 
@@ -28,6 +31,7 @@ public class DuenosView {
                     3. Actualizar un dueño
                     4. Eliminar un dueño
                     5. Ver mascotas de un dueño
+                    6. Transferir dueno
                     0. salir
                     >>> Elige una opcion:""");
             try {
@@ -39,6 +43,7 @@ public class DuenosView {
                 funciones.put("3", this::actualizarDueno);
                 funciones.put("4", this::eliminarDueno);
                 funciones.put("5", this::verMascotasDeUnDueno);
+                funciones.put("6", () -> transferenciaDuenoView.transferirDueno());
                 funciones.put("0", () -> System.out.println("Saliendo..."));
 
                 Runnable funcion = funciones.get(opcion);
@@ -256,4 +261,6 @@ public class DuenosView {
         String documento = input.nextLine();
         controller.verMascotasDeUnDueno(documento);
     }
+
+
 }
