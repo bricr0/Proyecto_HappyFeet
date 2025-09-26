@@ -11,9 +11,9 @@ public class EspecieView {
     private final EspecieController controller;
     private final Scanner input;
 
-    public EspecieView(EspecieController controller, Scanner input) {
+    public EspecieView(EspecieController controller) {
         this.controller = controller;
-        this.input = input;
+        this.input =  new Scanner(System.in);
     }
 
 //    ---------------------------------------------------- MENU PRINCIPAL ------------------------------------------------
@@ -54,7 +54,6 @@ public class EspecieView {
                 opcion = "";
             }
         }
-        input.close();
     }
 
 
@@ -96,12 +95,18 @@ public class EspecieView {
         System.out.println("\n --- ACTUALIZAR ESPECIE ---");
         System.out.print("Ingrese el nombre de la especie a actualizar: ");
         String nombre = input.nextLine().trim();
+        Especie especieExistente = controller.buscarEspecie(nombre);
+        if (especieExistente == null) {
+            System.out.println("No se puede actualizar una especie que no existe.");
+            return;
+        }
 
-        Especie especie = new Especie();
+        System.out.print("Ingrese el nuevo nombre de la especie: ");
+        String nuevoNombre = input.nextLine().trim();
+        especieExistente.setNombre(nuevoNombre);
 
-        controller.actualizarEspecie(especie);
+        controller.actualizarEspecie(especieExistente);
 
-        System.out.println("Especie actualizada con éxito.");
     }
 
 //    ----------------------------------------------------5. ELIMINAR ESPECIE ------------------------------------------------

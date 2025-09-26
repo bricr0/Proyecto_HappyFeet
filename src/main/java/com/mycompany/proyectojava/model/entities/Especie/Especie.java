@@ -4,7 +4,10 @@ public class Especie {
     private Integer id;
     private String nombre;
 
-    public Especie() {}
+
+    public Especie(String nombre) {
+        this.nombre = nombre;
+    }
 
     public Especie(Integer id, String nombre) {
         this.id = id;

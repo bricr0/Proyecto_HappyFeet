@@ -59,9 +59,7 @@ public class EspecieDAO implements IEspecie {
             pstmt.setString(1, nombre);
             ResultSet rs = pstmt.executeQuery();
             if (rs.next()) {
-                Especie especie = new Especie();
-                especie.setId(rs.getInt("id"));           // ✅ usar setter
-                especie.setNombre(rs.getString("nombre"));
+                Especie especie = new Especie(rs.getInt("id"), rs.getString("nombre"));
                 return especie;
             } else {
                 return null;
@@ -76,13 +74,13 @@ public class EspecieDAO implements IEspecie {
 
     @Override
     public void actualizarEspecie(Especie especie) {
-        String sql = "UPDATE especies SET nombre = ? WHERE nombre = ?";
-        try (PreparedStatement pstmt = conexion.prepareStatement(sql)){
+        String sql = "UPDATE especies SET nombre = ? WHERE id = ?";
+        try (PreparedStatement pstmt = conexion.prepareStatement(sql)) {
             pstmt.setString(1, especie.getNombre());
-            pstmt.setString(2, especie.getNombre());
+            pstmt.setInt(2, especie.getId());
             pstmt.executeUpdate();
         } catch (Exception e) {
-            throw new RuntimeException("Error al actualizar una especie: " + e);
+            throw new RuntimeException("Error al actualizar la especie: " + e);
         }
     }
 

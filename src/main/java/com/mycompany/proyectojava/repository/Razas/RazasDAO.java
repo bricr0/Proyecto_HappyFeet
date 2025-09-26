@@ -19,8 +19,8 @@ public class RazasDAO implements IRazas {
     public void agregarRaza(Razas raza) {
         String sql = "INSERT INTO razas (especie_id, nombre) VALUES (?, ?)";
         try (PreparedStatement pstmt = conexion.prepareStatement(sql)) {
-            pstmt.setString(1, raza.getNombre());
-            pstmt.setInt(2, raza.getEspecie_id());
+            pstmt.setInt(1, raza.getEspecie_id());
+            pstmt.setString(2, raza.getNombre());
             pstmt.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException("Error al agregar raza: " + e);
@@ -89,7 +89,15 @@ public class RazasDAO implements IRazas {
 
     @Override
     public void actualizarRaza(Razas raza) {
-
+        String sql = "UPDATE razas SET nombre = ?, especie_id = ? WHERE id = ?";
+        try (PreparedStatement pstmt = conexion.prepareStatement(sql)) {
+            pstmt.setString(1, raza.getNombre());
+            pstmt.setInt(2, raza.getEspecie_id());
+            pstmt.setInt(3, raza.getId());
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Error al actualizar raza: " + e);
+        }
     }
 
 //    ----------------------------------------------------------------------5. ELIMINAR RAZA ---------------------------------------------------

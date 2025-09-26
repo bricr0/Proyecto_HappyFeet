@@ -32,7 +32,7 @@ public class EspecieController {
 
 //    ------------------------------------------------------------3. BUSCAR ESPECIE ------------------------------------------------
 
-    public void buscarEspecie(String nombre) {
+    public Especie buscarEspecie(String nombre) {
         if (nombre == null || nombre.trim().isEmpty()) {
             throw new IllegalArgumentException("El nombre de la especie no puede estar vacío.");
         }
@@ -42,15 +42,13 @@ public class EspecieController {
         } else {
             System.out.println(especie);
         }
+        return especie;
     }
 
 //    ----------------------------------------------------4. ACTUALIZAR ESPECIE ------------------------------------------------
     public void actualizarEspecie(Especie especie) {
         if (especie == null || especie.getNombre() == null || especie.getNombre().trim().isEmpty()) {
             throw new IllegalArgumentException("Datos de la especie inválidos");
-        }
-        if (especieDao.listarPorNombre(especie.getNombre()) == null) {
-            throw new IllegalArgumentException("La especie con nombre '" + especie.getNombre() + "' no existe.");
         }
         especieDao.actualizarEspecie(especie);
         System.out.println("Especie actualizada con éxito");

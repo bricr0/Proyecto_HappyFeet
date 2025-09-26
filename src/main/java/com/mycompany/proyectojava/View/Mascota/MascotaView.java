@@ -41,21 +41,16 @@ public class MascotaView {
                     2. Listar mascotas.
                     3. Actualizar una mascota.
                     4. Eliminar una mascota.
-                    5. Agregar raza.
-                    6. Agregar especie.
                     0. salir
                     >>> Elige una opcion:""");
             try {
                 opcion = input.nextLine();
 
-                // 👇 Map de opciones
                 Map<String, Runnable> funciones = new HashMap<>();
                 funciones.put("1", this::agregarMascota);
                 funciones.put("2", this::menuListasMascotas);
                 funciones.put("3", this::actualizarMascota);
                 funciones.put("4", this::eliminarMascota);
-//                funciones.put("5", this::agregarRaza);
-//                funciones.put("6", this::agregarEspecie);
                 funciones.put("0", () -> System.out.println("Gracias por elegirnos ..."));
 
                 Runnable funcion = funciones.get(opcion);
@@ -72,7 +67,6 @@ public class MascotaView {
                 opcion = "";
             }
         }
-        input.close();
     }
 
 
@@ -343,8 +337,6 @@ public class MascotaView {
         controller.eliminarMascota(microchip);
         System.out.println("✅ Mascota eliminada con éxito.");
     }
-
-//    ------------------------------------------------------------------------- 5. AGREGAR RAZA ------------------------------------------------
 
 }
 
