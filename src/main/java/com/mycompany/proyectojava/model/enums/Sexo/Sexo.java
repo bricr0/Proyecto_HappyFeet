@@ -1,4 +1,4 @@
-package com.mycompany.proyectojava.model.enums;
+package com.mycompany.proyectojava.model.enums.Sexo;
 
 public enum Sexo {
     Macho, Hembra;
