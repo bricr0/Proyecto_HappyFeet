@@ -32,6 +32,16 @@ public class MenuPrincipal {
                     menuGestionPacientes.MenuPacientes();
                 });
 
+                funciones.put("2", () -> {
+                    MenuGestionCitas menuGestionCitas = new MenuGestionCitas();
+                    menuGestionCitas.MenuCitas();
+                });
+
+                funciones.put("3", () -> {
+                    MenuGestionInventarios menuGestionInventarios = new MenuGestionInventarios();
+                    menuGestionInventarios.MenuInventario();
+                });
+
                 funciones.put("4", () -> {
                     MenuGestionFacturas menuGestionFacturas = new MenuGestionFacturas();
                     menuGestionFacturas.MenuFacturas();
