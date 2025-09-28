@@ -1,0 +1,19 @@
+===== FACTURA CLÍNICA VETERINARIA =====
+ID Factura: 3
+Fecha Emisión: 2025-09-24 T 02:02:53
+Estado: pagada
+
+---- CLIENTE ----
+Nombre: Ana Rodríguez Silva
+Documento: 11223344C
+Teléfono: 600345678
+Correo: ana.rodriguez@email.com
+
+---- DETALLE ----
+Pienso Premium 15kg x2 @ 60.00 = 120.00
+
+----------------------------
+Subtotal: 120.00
+Impuestos: 25.20
+TOTAL A PAGAR: 145.20
+============================
