@@ -1,6 +1,6 @@
 package com.mycompany.proyectojava.controller.Factura;
 
-import com.mycompany.proyectojava.Service.FacturaService.FacturaService;
+import com.mycompany.proyectojava.service.Facturas.FacturaService;
 
 
 public class FacturaController {

@@ -36,7 +36,6 @@ public class JornadaDeVacunacionDAO implements IJornadaDeVacunacion {
         }
     }
 
-    // Listar
     public List<JornadasDeVacunacion> listarJornadas(String estadoFiltro) {
         List<JornadasDeVacunacion> lista = new ArrayList<>();
         String sql = "SELECT * FROM jornadas_vacunacion";
@@ -66,7 +65,6 @@ public class JornadaDeVacunacionDAO implements IJornadaDeVacunacion {
         return lista;
     }
 
-    // Actualizar
     public void actualizarJornada(JornadasDeVacunacion jornada) {
         String sql = "UPDATE jornadas_vacunacion SET nombre=?, fecha=?, ubicacion=?, notas=?, estado=? WHERE id=?";
         try (PreparedStatement stmt = conexion.prepareStatement(sql)) {
@@ -82,7 +80,6 @@ public class JornadaDeVacunacionDAO implements IJornadaDeVacunacion {
         }
     }
 
-    // Eliminar
     public void eliminarJornada(Integer id) {
         String sql = "DELETE FROM jornadas_vacunacion WHERE id = ?";
         try (PreparedStatement stmt = conexion.prepareStatement(sql)) {

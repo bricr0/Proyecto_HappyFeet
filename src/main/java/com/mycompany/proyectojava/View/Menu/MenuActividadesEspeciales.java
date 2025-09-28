@@ -1,13 +1,9 @@
 package com.mycompany.proyectojava.View.Menu;
 
-import com.mycompany.proyectojava.Service.FacturaService.FacturaService;
 import com.mycompany.proyectojava.View.Adopcion.AdopcionView;
-import com.mycompany.proyectojava.View.Factura.FacturaView;
 import com.mycompany.proyectojava.View.JornadaDeVacunacion.JornadaDeVacunacionView;
 import com.mycompany.proyectojava.controller.Adopcion.AdopcionController;
-import com.mycompany.proyectojava.controller.Factura.FacturaController;
 import com.mycompany.proyectojava.controller.JornadaDeVacunacion.JornadaDeVacunacionController;
-import com.mycompany.proyectojava.model.entities.Adopcion.Adopcion;
 import com.mycompany.proyectojava.repository.Adopcion.AdopcionDAO;
 import com.mycompany.proyectojava.repository.Dueno.DuenoDAO;
 import com.mycompany.proyectojava.repository.JornadaDeVacunacion.JornadaDeVacunacionDAO;
@@ -59,7 +55,8 @@ public class MenuActividadesEspeciales {
                     }
                 });
 
-//                funciones.put("3", this::clubMascotasFrecuentes);
+
+
 
                 funciones.put("0", () -> System.out.println("Volviendo al menú principal..."));
 

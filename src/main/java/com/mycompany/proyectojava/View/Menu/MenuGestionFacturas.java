@@ -1,6 +1,6 @@
 package com.mycompany.proyectojava.View.Menu;
 
-import com.mycompany.proyectojava.Service.FacturaService.FacturaService;
+import com.mycompany.proyectojava.service.Facturas.FacturaService;
 import com.mycompany.proyectojava.View.Factura.FacturaView;
 import com.mycompany.proyectojava.controller.Factura.FacturaController;
 import java.util.HashMap;
