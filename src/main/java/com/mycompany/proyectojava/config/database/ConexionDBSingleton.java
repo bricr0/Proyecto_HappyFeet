@@ -4,8 +4,8 @@ import java.sql.*;
 // Conexion como un singleton
 public class ConexionDBSingleton {
     private static String host = "jdbc:mysql://localhost:3306/";
-    private static String user = "root";
-    private static String password = "sebastian";
+    private static String user = "campus2023";
+    private static String password = "Campus@2023";
     private static String db = "HappyFeetDB";
 
     private static String strConn = host + db;
@@ -23,6 +23,7 @@ public class ConexionDBSingleton {
             try {
                 if (connection == null || connection.isClosed()){
                     connection = DriverManager.getConnection(strConn, user, password);
+                    System.out.println("Conexión exitosa");
                 }
             } catch (SQLException e){
                 connection = null;
