@@ -3,10 +3,6 @@ package com.mycompany.proyectojava.View.Menu;
 import com.mycompany.proyectojava.Service.FacturaService.FacturaService;
 import com.mycompany.proyectojava.View.Factura.FacturaView;
 import com.mycompany.proyectojava.controller.Factura.FacturaController;
-import com.mycompany.proyectojava.model.entities.Factura.Factura;
-import com.mycompany.proyectojava.repository.Dueno.DuenoDAO;
-import com.mycompany.proyectojava.repository.Factura.IFacturaDAO;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -15,7 +11,7 @@ public class MenuGestionFacturas {
     private final Scanner input = new Scanner(System.in);
 
     public void MenuFacturas() {
-        int opcion = -1;
+        Integer opcion = -1;
         do {
             System.out.println("\n===== GESTIÓN DE FACTURAS =====");
             System.out.println("1. Generación de Factura en Texto Plano");

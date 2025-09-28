@@ -14,9 +14,6 @@
 *.iml
 out/
 
-# VS Code
-.vscode/
-
 # --- Archivos del sistema ---
 .DS_Store
 Thumbs.db
@@ -25,3 +22,6 @@ Thumbs.db
 *.swp
 *.swo
 *.tmp
+
+*.properties
+*.env
