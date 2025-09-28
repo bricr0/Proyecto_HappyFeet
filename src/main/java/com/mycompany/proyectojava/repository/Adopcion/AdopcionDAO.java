@@ -63,9 +63,9 @@ public class AdopcionDAO implements IAdopcion {
                     Timestamp timestamp = rs.getTimestamp("fecha_adopcion");
                     LocalDateTime fechaAdopcion = timestamp != null ? timestamp.toLocalDateTime() : null;
 
-                    AdopcionEnum tipoEnum = AdopcionEnum.valueOf(rs.getString("tipo").toUpperCase());
+                    AdopcionEnum tipoEnum = AdopcionEnum.valueOf(rs.getString("tipo").toLowerCase());
 
-                    AdopcionEstadoEnum estadoEnum = AdopcionEstadoEnum.valueOf(rs.getString("estado"));
+                    AdopcionEstadoEnum estadoEnum = AdopcionEstadoEnum.valueOf(rs.getString("estado").toLowerCase());
                     adopcion = new Adopcion(
                             rs.getInt("adoptante_id"),
                             rs.getString("nombre_mascota"),
@@ -111,7 +111,7 @@ public class AdopcionDAO implements IAdopcion {
                     LocalDateTime fechaAdopcion = timestamp != null ? timestamp.toLocalDateTime() : null;
 
                     AdopcionEnum tipoEnum = rs.getString("tipo") != null
-                            ? AdopcionEnum.fromString(rs.getString("tipo"))
+                            ? AdopcionEnum.valueOf(rs.getString("tipo").toLowerCase())
                             : null;
 
                     AdopcionEstadoEnum estadoEnum = rs.getString("estado") != null

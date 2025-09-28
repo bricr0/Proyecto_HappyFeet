@@ -21,7 +21,7 @@ public class AdopcionController {
             }
 
             if (adopcion.getTipo() == null) {
-                adopcion.setTipo(AdopcionEnum.ADOPCION);
+                adopcion.setTipo(AdopcionEnum.adopcion);
             }
 
             adopcionDAO.crearAdopcion(adopcion);

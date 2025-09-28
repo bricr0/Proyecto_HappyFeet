@@ -1,5 +1,6 @@
 package com.mycompany.proyectojava.View.Adopcion;
 
+import com.mycompany.proyectojava.Util.AdopcionContrato.ContratoTxtGenerator;
 import com.mycompany.proyectojava.controller.Adopcion.AdopcionController;
 import com.mycompany.proyectojava.model.entities.Adopcion.Adopcion;
 import com.mycompany.proyectojava.model.entities.Dueno.Dueno;
@@ -9,6 +10,7 @@ import com.mycompany.proyectojava.model.enums.Adopcion.AdopcionEstadoEnum;
 import com.mycompany.proyectojava.repository.Dueno.DuenoDAO;
 import com.mycompany.proyectojava.repository.Mascota.MascotaDAO;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -121,9 +123,15 @@ public class AdopcionView {
                 null
         );
 
+        adopcion.setNombreAdoptante(adoptante.getNombre());
+        adopcion.setNombreMascota(mascota.getNombre());
+        adopcion.setEstado(AdopcionEstadoEnum.pendiente);
+        adopcion.setFechaAdopcion(LocalDateTime.now());
+
         controller.registrarAdopcion(adopcion);
 
         System.out.println("✅ Adopción registrada con ID: " + adopcion.getId());
+        ContratoTxtGenerator.generarContrato(adopcion);
     }
 
     private void listarAdopciones() throws Exception {
@@ -147,9 +155,10 @@ public class AdopcionView {
             return;
         }
         System.out.print("Nuevo tipo (adopcion/temporal): ");
-        a.setEstado(AdopcionEstadoEnum.valueOf(input.nextLine()));
+        a.setTipo(AdopcionEnum.valueOf(input.nextLine()));
         System.out.print("Nuevo estado (pendiente/completada/rechazada/cancelada): ");
-        a.setNotas(input.nextLine());
+        a.setEstado(AdopcionEstadoEnum.valueOf(input.nextLine()));
+
         controller.actualizarAdopcion(a);
         System.out.println("Adopción actualizada.");
     }
