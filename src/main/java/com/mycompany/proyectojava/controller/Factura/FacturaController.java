@@ -1,10 +1,7 @@
 package com.mycompany.proyectojava.controller.Factura;
 
 import com.mycompany.proyectojava.Service.FacturaService.FacturaService;
-import com.mycompany.proyectojava.model.entities.Factura.Factura;
-import com.mycompany.proyectojava.repository.Factura.IFacturaDAO;
 
-import java.util.List;
 
 public class FacturaController {
     private final FacturaService facturaService;

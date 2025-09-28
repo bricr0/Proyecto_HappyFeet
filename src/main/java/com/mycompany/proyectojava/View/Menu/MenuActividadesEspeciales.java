@@ -3,11 +3,14 @@ package com.mycompany.proyectojava.View.Menu;
 import com.mycompany.proyectojava.Service.FacturaService.FacturaService;
 import com.mycompany.proyectojava.View.Adopcion.AdopcionView;
 import com.mycompany.proyectojava.View.Factura.FacturaView;
+import com.mycompany.proyectojava.View.JornadaDeVacunacion.JornadaDeVacunacionView;
 import com.mycompany.proyectojava.controller.Adopcion.AdopcionController;
 import com.mycompany.proyectojava.controller.Factura.FacturaController;
+import com.mycompany.proyectojava.controller.JornadaDeVacunacion.JornadaDeVacunacionController;
 import com.mycompany.proyectojava.model.entities.Adopcion.Adopcion;
 import com.mycompany.proyectojava.repository.Adopcion.AdopcionDAO;
 import com.mycompany.proyectojava.repository.Dueno.DuenoDAO;
+import com.mycompany.proyectojava.repository.JornadaDeVacunacion.JornadaDeVacunacionDAO;
 import com.mycompany.proyectojava.repository.Mascota.MascotaDAO;
 
 import java.util.HashMap;
@@ -24,6 +27,10 @@ public class MenuActividadesEspeciales {
         DuenoDAO duenoDAO = new DuenoDAO();
         AdopcionController adopcionController = new AdopcionController(adopcionDAO);
         AdopcionView adopcionView = new AdopcionView(adopcionController, mascotaDAO, duenoDAO);
+        JornadaDeVacunacionDAO jornadaDeVacunacionDAO = new JornadaDeVacunacionDAO();
+        JornadaDeVacunacionController jornadaDeVacunacionController = new JornadaDeVacunacionController(jornadaDeVacunacionDAO);
+        JornadaDeVacunacionView jornadaDeVacunacionView = new JornadaDeVacunacionView(jornadaDeVacunacionController);
+
         do {
             System.out.println("\n===== ACTIVIDADES ESPECIALES =====");
             System.out.println("1. Adoptar mascotas");
@@ -44,13 +51,13 @@ public class MenuActividadesEspeciales {
                     }
                 });
 
-//                funciones.put("2", () -> {
-//                    try {
-//                        adopcionView.listarAdopciones();
-//                    } catch (Exception e) {
-//                        System.out.println("⚠️ Error al listar adopciones: " + e.getMessage());
-//                    }
-//                });
+                funciones.put("2", () -> {
+                    try {
+                        jornadaDeVacunacionView.mostrarMenu();
+                    } catch (Exception e) {
+                        System.out.println("⚠️ Error al listar adopciones: " + e.getMessage());
+                    }
+                });
 
 //                funciones.put("3", this::clubMascotasFrecuentes);
 
