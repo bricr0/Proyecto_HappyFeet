@@ -14,7 +14,7 @@ public class FacturaTxtGenerator {
         String nombreArchivo = "Facturas/Factura_" + factura.getId() + ".txt";
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(nombreArchivo))) {
-            writer.write("===== FACTURA CLÍNICA VETERINARIA =====\n");
+            writer.write("===== FACTURA HAAPPY FEET =====\n");
             writer.write("ID Factura: " + factura.getId() + "\n");
             writer.write("Fecha Emisión: " + factura.getFechaEmision() + "\n");
             writer.write("Estado: " + factura.getEstado() + "\n\n");
