@@ -1,8 +1,8 @@
 -- ============================================
 --   CLÍNICA VETERINARIA - BASE DE DATOS
 -- ============================================
-CREATE DATABASE HappyFeetDB;
-USE `HappyFeetDB`;
+CREATE DATABASE HappyFeet;
+USE `HappyFeet`;
 
 -- ------------------------------
 -- Catálogos
@@ -513,3 +513,6 @@ INSERT IGNORE INTO cita_estados (id, nombre) VALUES
 
 ALTER TABLE duenos
 ADD COLUMN estado ENUM('activo', 'inactivo') NOT NULL DEFAULT 'activo';
+
+ALTER TABLE mascotas
+ADD COLUMN estado ENUM('Activo','Inactivo') NOT NULL DEFAULT 'Activo';

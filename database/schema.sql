@@ -123,11 +123,11 @@ SELECT * FROM citas c;
 -- Consultas
 -- ------------------------------
 INSERT INTO consultas (cita_id, veterinario_id, diagnostico, tratamiento_recomendado) VALUES
-(11, 1, 'Animal sano, peso adecuado', 'Vacuna aplicada, próximo control en 1 año'),
-(12, 2, 'Dermatitis alérgica', 'Antihistamínico y champú especial'),
-(13, 3, 'Recuperación satisfactoria', 'Continuar con medicación por 5 días'),
-(14, 4, 'Crisis asmática leve', 'Broncodilatador y reposo'),
-(15, 5, 'Cancelada por cliente', 'Reprogramar para próxima semana');
+(1, 1, 'Animal sano, peso adecuado', 'Vacuna aplicada, próximo control en 1 año'),
+(2, 2, 'Dermatitis alérgica', 'Antihistamínico y champú especial'),
+(3, 3, 'Recuperación satisfactoria', 'Continuar con medicación por 5 días'),
+(4, 4, 'Crisis asmática leve', 'Broncodilatador y reposo'),
+(5, 5, 'Cancelada por cliente', 'Reprogramar para próxima semana');
 
 -- ------------------------------
 -- Facturas
@@ -162,16 +162,17 @@ INSERT INTO contratos_adopcion (mascota_id, adoptante_id, contenido, firmado, fi
 (4, 4, 'Contrato temporal para Nala...', TRUE, 'David Fernández', 'adopcion_temporal'),
 (5, 5, 'Contrato de adopción para Rocky...', TRUE, 'Laura García', 'adopcion_definitiva');
 
+select * from contratos_adopcion ca;
+
 -- ------------------------------
 -- Adopciones
 -- ------------------------------
-select * from contratos_adopcion ca ;
 INSERT INTO adopciones (mascota_id, adoptante_id, tipo, estado, contrato_id) VALUES
-(2, 2, 'adopcion', 'completada', 11),
-(2, 2, 'temporal', 'completada', 12),
-(3, 3, 'adopcion', 'pendiente', 13),
-(4, 4, 'temporal', 'completada', 14),
-(5, 5, 'adopcion', 'completada', 15);
+(2, 2, 'adopcion', 'completada', 1),
+(2, 2, 'temporal', 'completada', 2),
+(3, 3, 'adopcion', 'pendiente', 3),
+(4, 4, 'temporal', 'completada', 4),
+(5, 5, 'adopcion', 'completada', 5);
 
 -- ------------------------------
 -- Jornadas de Vacunación
@@ -232,5 +233,3 @@ INSERT INTO redenciones_puntos (dueno_id, puntos_usados, descripcion, estado) VA
 (3, 500, 'Descuento en esterilización', 'aplicada'),
 (4, 150, 'Collar antipulgas', 'cancelada'),
 (5, 1000, 'Pienso premium gratuito', 'aplicada');
-
-SELECT * FROM mascotas m;
