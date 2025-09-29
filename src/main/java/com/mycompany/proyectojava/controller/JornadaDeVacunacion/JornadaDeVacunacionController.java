@@ -4,7 +4,6 @@ import com.mycompany.proyectojava.model.entities.JornadasVacunacion.JornadasDeVa
 import com.mycompany.proyectojava.model.enums.JornadasVacunacion.JornadaDeVacunacionEstado;
 import com.mycompany.proyectojava.repository.JornadaDeVacunacion.IJornadaDeVacunacion;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +16,6 @@ public class JornadaDeVacunacionController {
 
     public void crearJornada(JornadasDeVacunacion jornada) {
         try {
-            // Asignar estado por defecto si es null
             if (jornada.getEstado() == null) {
                 jornada.setEstado(String.valueOf(JornadaDeVacunacionEstado.programada));
             }
@@ -40,7 +38,6 @@ public class JornadaDeVacunacionController {
 
     public void actualizarJornada(JornadasDeVacunacion jornada) {
         try {
-            // Convertir enum a string para DAO
             if (jornada.getEstado() != null) {
                 jornada.setEstado(jornada.getEstado());
             }

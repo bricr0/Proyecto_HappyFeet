@@ -1,11 +1,21 @@
 package com.mycompany.proyectojava.View.JornadaDeVacunacion;
 
+import com.mycompany.proyectojava.View.JornadaDeVacunacionAsistencia.JornadaDeVacunacionAsistenciaView;
+import com.mycompany.proyectojava.controller.Dueno.DuenoController;
 import com.mycompany.proyectojava.controller.JornadaDeVacunacion.JornadaDeVacunacionController;
+import com.mycompany.proyectojava.controller.JornadaDeVacunacionAsistencia.JornadaDeVacunacionAsistenciaController;
+import com.mycompany.proyectojava.controller.Mascota.MascotaControlller;
 import com.mycompany.proyectojava.model.entities.JornadasVacunacion.JornadasDeVacunacion;
 import com.mycompany.proyectojava.model.enums.JornadasVacunacion.JornadaDeVacunacionEstado;
+import com.mycompany.proyectojava.repository.Dueno.DuenoDAO;
+import com.mycompany.proyectojava.repository.JornadaDeVacunacion.JornadaDeVacunacionDAO;
+import com.mycompany.proyectojava.repository.JornadaDeVacunacionAsistencia.JornadaDeVacunacionAsisteciaDAO;
+import com.mycompany.proyectojava.repository.Mascota.MascotaDAO;
 
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class JornadaDeVacunacionView {
@@ -26,24 +36,42 @@ public class JornadaDeVacunacionView {
             System.out.println("2. Listar jornadas");
             System.out.println("3. Actualizar jornada");
             System.out.println("4. Eliminar jornada");
+            System.out.println("5. Asistencias de la jornada");
             System.out.println("0. Salir");
             System.out.print("Seleccione una opción: ");
 
             opcion = Integer.parseInt(input.nextLine());
+            Map<String, Runnable> funciones = new HashMap<>();
+            funciones.put("1", this::crearJornada);
+            funciones.put("2", this::listarJornadas);
+            funciones.put("3", this::actualizarJornada);
+            funciones.put("4", this::eliminarJornada);
+            funciones.put("5", () -> {
+                try {
+                    JornadaDeVacunacionAsistenciaController jornadaDeVacunacionAsistenciaController = new JornadaDeVacunacionAsistenciaController(new JornadaDeVacunacionAsisteciaDAO());
 
-            switch (opcion) {
-                case 1 -> crearJornada();
-                case 2 -> listarJornadas();
-                case 3 -> actualizarJornada();
-                case 4 -> eliminarJornada();
-                case 0 -> System.out.println("Saliendo...");
-                default -> System.out.println("⚠️ Opción no válida");
+                    JornadaDeVacunacionController jornadaDeVacunacionController = new JornadaDeVacunacionController(new JornadaDeVacunacionDAO());
+
+                    DuenoController duenoController = new DuenoController(new DuenoDAO());
+                    MascotaControlller mascotaControlller = new MascotaControlller(new MascotaDAO());
+
+                    JornadaDeVacunacionAsistenciaView jornadaDeVacunacionAsistenciaView = new JornadaDeVacunacionAsistenciaView(jornadaDeVacunacionAsistenciaController, jornadaDeVacunacionController, duenoController, mascotaControlller);
+
+                    jornadaDeVacunacionAsistenciaView.mostrarMenu();
+                } catch (Exception e) {
+                    System.out.println("⚠️ Error al gestionar asistencias: " + e.getMessage());
+                }
+            });
+            funciones.put("0", () -> System.out.println("Saliendo..."));
+
+            Runnable funcion = funciones.get(String.valueOf(opcion));
+            if (funcion != null) {
+                funcion.run();
+            } else {
+                System.out.println("⚠️ Opción no válida");
             }
-
         } while (opcion != 0);
     }
-
-    // --- MÉTODOS CRUD ---
 
     public void crearJornada() {
         System.out.println("--- Crear Jornada ---");
@@ -74,7 +102,7 @@ public class JornadaDeVacunacionView {
         System.out.print("Filtrar por estado (programada/en_curso/finalizada/cancelada) o ENTER para todas: ");
         String filtro = input.nextLine();
         JornadaDeVacunacionEstado estadoFiltro = filtro.isEmpty() ? null :
-                JornadaDeVacunacionEstado.valueOf(filtro.toUpperCase());
+                JornadaDeVacunacionEstado.valueOf(filtro.toLowerCase());
 
         List<JornadasDeVacunacion> jornadas = jornadaController.listarJornadas(estadoFiltro);
         System.out.println("--- Jornadas ---");

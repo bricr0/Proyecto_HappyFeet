@@ -55,9 +55,6 @@ public class MenuActividadesEspeciales {
                     }
                 });
 
-
-
-
                 funciones.put("0", () -> System.out.println("Volviendo al menú principal..."));
 
                 Runnable funcion = funciones.get(String.valueOf(opcion));

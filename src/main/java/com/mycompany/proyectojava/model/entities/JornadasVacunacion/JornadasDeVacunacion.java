@@ -15,17 +15,6 @@ public class JornadasDeVacunacion {
     private String estado;
     private LocalDateTime createdAt;
 
-    public JornadasDeVacunacion(Integer id, String nombre, LocalDate fecha, String ubicacion, String notas, String creadoPor, String estado, LocalDateTime createdAt) {
-        this.id = id;
-        this.nombre = nombre;
-        this.fecha = fecha;
-        this.ubicacion = ubicacion;
-        this.notas = notas;
-        this.creadoPor = creadoPor;
-        this.estado = estado;
-        this.createdAt = createdAt;
-    }
-
     public JornadasDeVacunacion() {
 
     }

@@ -2,7 +2,6 @@ package com.mycompany.proyectojava.repository.JornadaDeVacunacion;
 
 import com.mycompany.proyectojava.model.entities.JornadasVacunacion.JornadasDeVacunacion;
 
-import java.sql.SQLException;
 import java.util.List;
 
 public interface IJornadaDeVacunacion {
