@@ -6,6 +6,12 @@ Su objetivo principal es facilitar el registro, administración y consulta de la
 
 Este proyecto resuelve la necesidad de la veterinaria de contar con un sistema confiable que permita centralizar los datos y optimizar los procesos administrativos, evitando errores comunes derivados del manejo manual.
 
+# EXAMEN CAMPUS 
+
+## Ubicacion
+El examen de Juan Sebastian Martinez Tapias de C3 se encuentra en la rama "Examen-Sebastian"
+El examen de Brigitte Claros Viola de C3 se encuentra en la rama "Examen-Brian"
+
 ---
 
 ## ⚙️ Tecnologías Utilizadas
