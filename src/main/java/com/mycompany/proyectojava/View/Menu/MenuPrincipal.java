@@ -47,6 +47,11 @@ public class MenuPrincipal {
                     menuGestionFacturas.MenuFacturas();
                 });
 
+                funciones.put("5", ()->{
+                   MenuActividadesEspeciales menuActividadesEspeciales = new MenuActividadesEspeciales();
+                   menuActividadesEspeciales.MenuEspeciales();
+                });
+
                 funciones.put("0", () -> System.out.println("Saliendo del programa..."));
 
                 Runnable funcion = funciones.get(String.valueOf(opcion));
