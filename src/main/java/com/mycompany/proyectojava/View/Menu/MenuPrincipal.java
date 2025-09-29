@@ -32,9 +32,23 @@ public class MenuPrincipal {
                     menuGestionPacientes.MenuPacientes();
                 });
 
+                funciones.put("2", () -> {
+                    MenuServiciosMedicosYCitas menuServiciosMedicosYCitas = new MenuServiciosMedicosYCitas();
+                    menuServiciosMedicosYCitas.MenuServiciosMedicosCitas();
+                });
+
+                funciones.put("3", ()->{
+
+                });
+
                 funciones.put("4", () -> {
                     MenuGestionFacturas menuGestionFacturas = new MenuGestionFacturas();
                     menuGestionFacturas.MenuFacturas();
+                });
+
+                funciones.put("5", () ->{
+                    MenuActividadesEspeciales menuActividadesEspeciales = new MenuActividadesEspeciales();
+                    menuActividadesEspeciales.MenuEspeciales();
                 });
 
                 funciones.put("0", () -> System.out.println("Saliendo del programa..."));
