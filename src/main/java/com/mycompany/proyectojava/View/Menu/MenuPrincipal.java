@@ -33,13 +33,13 @@ public class MenuPrincipal {
                 });
 
                 funciones.put("2", () -> {
-                    MenuGestionCitas menuGestionCitas = new MenuGestionCitas();
-                    menuGestionCitas.MenuCitas();
+                    MenuServiciosMedicosYCitas menuServiciosMedicosYCitas = new MenuServiciosMedicosYCitas();
+                    menuServiciosMedicosYCitas.MenuServiciosMedicosCitas();
                 });
 
-                funciones.put("3", () -> {
-                    MenuGestionInventarios menuGestionInventarios = new MenuGestionInventarios();
-                    menuGestionInventarios.MenuInventario();
+                funciones.put("3", ()->{
+                    MenuInventario menuInventario = new MenuInventario();
+                    menuInventario.MenuInventario();
                 });
 
                 funciones.put("4", () -> {
@@ -47,9 +47,9 @@ public class MenuPrincipal {
                     menuGestionFacturas.MenuFacturas();
                 });
 
-                funciones.put("5", ()->{
-                   MenuActividadesEspeciales menuActividadesEspeciales = new MenuActividadesEspeciales();
-                   menuActividadesEspeciales.MenuEspeciales();
+                funciones.put("5", () ->{
+                    MenuActividadesEspeciales menuActividadesEspeciales = new MenuActividadesEspeciales();
+                    menuActividadesEspeciales.MenuEspeciales();
                 });
 
                 funciones.put("0", () -> System.out.println("Saliendo del programa..."));
