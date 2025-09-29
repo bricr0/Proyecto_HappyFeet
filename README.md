@@ -1,6 +1,6 @@
 # 🐾 Sistema de Gestión Veterinaria – Happy Feet
 
-## 📌 Descripción del Contexto
+## 📌 Descripción del Proyecto
 El sistema **Happy Feet** es una aplicación de escritorio desarrollada para la gestión integral de una veterinaria.  
 Su objetivo principal es facilitar el registro, administración y consulta de la información relacionada con los dueños, pacientes (mascotas), citas médicas y servicios veterinarios.  
 
@@ -10,7 +10,7 @@ Este proyecto resuelve la necesidad de la veterinaria de contar con un sistema c
 
 ## ⚙️ Tecnologías Utilizadas
 - **Java 21** – Lenguaje principal de desarrollo.  
-- **MySQL 8** – Sistema de gestión de base de datos relacional.  
+- **MySQL 9** – Sistema de gestión de base de datos relacional.  
 - **JDBC (Java Database Connectivity)** – Conexión entre Java y MySQL.  
 - **Maven** – Herramienta de gestión de dependencias y construcción del proyecto.  
 - **Dotenv Java** – Manejo de variables de entorno para credenciales de base de datos.  
@@ -65,7 +65,7 @@ La base de datos contiene las siguientes tablas principales:
 
 ### 🔹 Clonación del Proyecto
 ```bash
-git clone https://github.com/tu_usuario/HappyFeet.git
+git clone https://github.com/bricr0/Proyecto_HappyFeet
 cd HappyFeet
 ```
 ### Configurar el archivo .env
@@ -84,12 +84,7 @@ DB_NAME=happyfeet
 source schema.sql;
 source data.sql;
 ```
-### 🚀 Ejecución del Proyecto
 
-- Compilar y ejecutar con Maven:
-```
-mvn clean compile exec:java -Dexec.mainClass="com.mycompany.proyectojava.ProyectoJava"
-```
 ### 📖 Guía de Uso
 
 Al iniciar la aplicación, se muestra el menú principal.
