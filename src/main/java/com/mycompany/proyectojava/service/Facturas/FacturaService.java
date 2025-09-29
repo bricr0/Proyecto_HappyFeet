@@ -1,10 +1,9 @@
-package com.mycompany.proyectojava.Service.FacturaService;
+package com.mycompany.proyectojava.service.Facturas;
 
 import com.mycompany.proyectojava.Util.Factura.FacturaTxtGenerator;
 import com.mycompany.proyectojava.model.entities.Dueno.Dueno;
 import com.mycompany.proyectojava.model.entities.Factura.Factura;
 import com.mycompany.proyectojava.repository.Dueno.DuenoDAO;
-import com.mycompany.proyectojava.repository.Dueno.IDueno;
 import com.mycompany.proyectojava.repository.Factura.IFacturaDAO;
 
 import java.util.List;

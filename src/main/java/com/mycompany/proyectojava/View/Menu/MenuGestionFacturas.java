@@ -1,12 +1,11 @@
 package com.mycompany.proyectojava.View.Menu;
 
-import com.mycompany.proyectojava.Service.FacturaService.FacturaService;
+import com.mycompany.proyectojava.View.Reportes.ReporteView;
+import com.mycompany.proyectojava.controller.Reporte.ReporteController;
+import com.mycompany.proyectojava.repository.Reporte.ReporteDAO;
+import com.mycompany.proyectojava.service.Facturas.FacturaService;
 import com.mycompany.proyectojava.View.Factura.FacturaView;
 import com.mycompany.proyectojava.controller.Factura.FacturaController;
-import com.mycompany.proyectojava.model.entities.Factura.Factura;
-import com.mycompany.proyectojava.repository.Dueno.DuenoDAO;
-import com.mycompany.proyectojava.repository.Factura.IFacturaDAO;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -15,7 +14,7 @@ public class MenuGestionFacturas {
     private final Scanner input = new Scanner(System.in);
 
     public void MenuFacturas() {
-        int opcion = -1;
+        Integer opcion = -1;
         do {
             System.out.println("\n===== GESTIÓN DE FACTURAS =====");
             System.out.println("1. Generación de Factura en Texto Plano");
@@ -56,6 +55,10 @@ public class MenuGestionFacturas {
 
     private void menuReportesGerenciales() {
         int opcion = -1;
+        ReporteController reporteController = new ReporteController(new ReporteDAO());
+        ReporteView reporteView = new ReporteView(reporteController);
+
+
         do {
             System.out.println("\n===== REPORTES GERENCIALES =====");
             System.out.println("1. Servicios más solicitados");
@@ -70,16 +73,16 @@ public class MenuGestionFacturas {
 
                 Map<String, Runnable> funciones = new HashMap<>();
                 funciones.put("1", () -> {
-                    System.out.println("📊 Generando reporte: Servicios más solicitados...");
+                    reporteView.mostrarServiciosMasSolicitados();
                 });
                 funciones.put("2", () -> {
-                    System.out.println("📊 Generando reporte: Desempeño del equipo veterinario...");
+                    reporteView.mostrarDesempenoVeterinarios();
                 });
                 funciones.put("3", () -> {
-                    System.out.println("📊 Generando reporte: Estado del inventario...");
+                    reporteView.mostrarInventarioCritico();
                 });
                 funciones.put("4", () -> {
-                    System.out.println("📊 Generando reporte: Análisis de facturación por período...");
+                    reporteView.mostrarFacturacionPorPeriodo();
                 });
                 funciones.put("0", () -> System.out.println("Volviendo al menú de facturas..."));
 
