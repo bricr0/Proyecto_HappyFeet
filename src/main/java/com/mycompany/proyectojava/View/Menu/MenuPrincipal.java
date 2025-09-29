@@ -33,12 +33,12 @@ public class MenuPrincipal {
                 });
 
                 funciones.put("2", () -> {
-                    MenuServiciosMedicosYCitas menuServiciosMedicosYCitas = new MenuServiciosMedicosYCitas();
-                    menuServiciosMedicosYCitas.MenuServiciosMedicosCitas();
+                    MenuGestionCitas menuServiciosMedicosYCitas = new MenuGestionCitas();
+                    menuServiciosMedicosYCitas.MenuCitas();
                 });
 
                 funciones.put("3", ()->{
-                    MenuInventario menuInventario = new MenuInventario();
+                    MenuGestionInventarios menuInventario = new MenuGestionInventarios();
                     menuInventario.MenuInventario();
                 });
 

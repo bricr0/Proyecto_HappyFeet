@@ -22,14 +22,12 @@ public class ConexionDBSingleton {
             instancia = new ConexionDBSingleton();
             try {
                 if (connection == null || connection.isClosed()){
-                    Class.forName("com.mysql.cj.jdbc.Driver"); // 🔑 cargar driver
+                    Class.forName("com.mysql.cj.jdbc.Driver");
                     connection = DriverManager.getConnection(strConn, user, password);
                 }
             } catch (SQLException e){
                 System.err.println("Error al conectar a la base de datos: " + e.getMessage());
 
-
-                // Verifica si el driver está disponible
                 System.err.println("Drivers disponibles:");
                 DriverManager.drivers().forEach(driver ->
                         System.err.println(" - " + driver.getClass().getName()));
