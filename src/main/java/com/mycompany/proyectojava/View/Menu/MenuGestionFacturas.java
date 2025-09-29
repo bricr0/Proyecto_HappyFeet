@@ -1,5 +1,8 @@
 package com.mycompany.proyectojava.View.Menu;
 
+import com.mycompany.proyectojava.View.Reportes.ReporteView;
+import com.mycompany.proyectojava.controller.Reporte.ReporteController;
+import com.mycompany.proyectojava.repository.Reporte.ReporteDAO;
 import com.mycompany.proyectojava.service.Facturas.FacturaService;
 import com.mycompany.proyectojava.View.Factura.FacturaView;
 import com.mycompany.proyectojava.controller.Factura.FacturaController;
@@ -52,6 +55,10 @@ public class MenuGestionFacturas {
 
     private void menuReportesGerenciales() {
         int opcion = -1;
+        ReporteController reporteController = new ReporteController(new ReporteDAO());
+        ReporteView reporteView = new ReporteView(reporteController);
+
+
         do {
             System.out.println("\n===== REPORTES GERENCIALES =====");
             System.out.println("1. Servicios más solicitados");
@@ -66,16 +73,16 @@ public class MenuGestionFacturas {
 
                 Map<String, Runnable> funciones = new HashMap<>();
                 funciones.put("1", () -> {
-                    System.out.println("📊 Generando reporte: Servicios más solicitados...");
+                    reporteView.mostrarServiciosMasSolicitados();
                 });
                 funciones.put("2", () -> {
-                    System.out.println("📊 Generando reporte: Desempeño del equipo veterinario...");
+                    reporteView.mostrarDesempenoVeterinarios();
                 });
                 funciones.put("3", () -> {
-                    System.out.println("📊 Generando reporte: Estado del inventario...");
+                    reporteView.mostrarInventarioCritico();
                 });
                 funciones.put("4", () -> {
-                    System.out.println("📊 Generando reporte: Análisis de facturación por período...");
+                    reporteView.mostrarFacturacionPorPeriodo();
                 });
                 funciones.put("0", () -> System.out.println("Volviendo al menú de facturas..."));
 
