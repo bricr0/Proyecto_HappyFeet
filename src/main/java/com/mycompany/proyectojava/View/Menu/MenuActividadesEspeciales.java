@@ -1,10 +1,13 @@
 package com.mycompany.proyectojava.View.Menu;
 
 import com.mycompany.proyectojava.View.Adopcion.AdopcionView;
+import com.mycompany.proyectojava.View.ClubFidelidad.ClubFidelidadView;
 import com.mycompany.proyectojava.View.JornadaDeVacunacion.JornadaDeVacunacionView;
 import com.mycompany.proyectojava.controller.Adopcion.AdopcionController;
+import com.mycompany.proyectojava.controller.ClubFidelidad.ClubFidelidadController;
 import com.mycompany.proyectojava.controller.JornadaDeVacunacion.JornadaDeVacunacionController;
 import com.mycompany.proyectojava.repository.Adopcion.AdopcionDAO;
+import com.mycompany.proyectojava.repository.ClubFidelidad.ClubFidelidadDAO;
 import com.mycompany.proyectojava.repository.Dueno.DuenoDAO;
 import com.mycompany.proyectojava.repository.JornadaDeVacunacion.JornadaDeVacunacionDAO;
 import com.mycompany.proyectojava.repository.Mascota.MascotaDAO;
@@ -26,6 +29,10 @@ public class MenuActividadesEspeciales {
         JornadaDeVacunacionDAO jornadaDeVacunacionDAO = new JornadaDeVacunacionDAO();
         JornadaDeVacunacionController jornadaDeVacunacionController = new JornadaDeVacunacionController(jornadaDeVacunacionDAO);
         JornadaDeVacunacionView jornadaDeVacunacionView = new JornadaDeVacunacionView(jornadaDeVacunacionController);
+
+        ClubFidelidadController clubFidelidadController = new ClubFidelidadController(new ClubFidelidadDAO());
+        ClubFidelidadView clubFidelidadView = new ClubFidelidadView(clubFidelidadController);
+
 
         do {
             System.out.println("\n===== ACTIVIDADES ESPECIALES =====");
@@ -53,6 +60,15 @@ public class MenuActividadesEspeciales {
                     } catch (Exception e) {
                         System.out.println("⚠️ Error al listar adopciones: " + e.getMessage());
                     }
+                });
+
+
+                funciones.put("3", ()->{
+                   try{
+                        clubFidelidadView.mostrarMenu();
+                   }catch (Exception e){
+                       System.err.println("Error: " + e);
+                   }
                 });
 
                 funciones.put("0", () -> System.out.println("Volviendo al menú principal..."));
