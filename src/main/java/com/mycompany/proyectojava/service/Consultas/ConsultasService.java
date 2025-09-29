@@ -17,7 +17,6 @@ public class ConsultasService {
     }
 
     public boolean registrarConsulta(Consultas consulta) {
-        // Validaciones de negocio
         if (consulta.getCita_id() == null || consulta.getVeterinario_id() == null) {
             throw new IllegalArgumentException("Cita y veterinario son obligatorios");
         }
@@ -26,12 +25,10 @@ public class ConsultasService {
             throw new IllegalArgumentException("El diagnóstico es obligatorio");
         }
 
-        // Validar que la cita exista
         if (citasDAO.buscarCitaPorId(consulta.getCita_id()) == null) {
             throw new IllegalArgumentException("La cita especificada no existe");
         }
 
-        // Si no tiene fecha de registro, asignar la fecha actual
         if (consulta.getFecha_registro() == null) {
             consulta.setFecha_registro(new Date());
         }
@@ -57,7 +54,6 @@ public class ConsultasService {
             throw new IllegalArgumentException("Consulta no encontrada");
         }
 
-        // Validar que la consulta no tenga más de 24 horas (no se puede eliminar consultas antiguas)
         long diferencia = new Date().getTime() - consulta.getFecha_registro().getTime();
         long horas = diferencia / (60 * 60 * 1000);
 
@@ -73,13 +69,11 @@ public class ConsultasService {
     }
 
     public boolean actualizarConsulta(Consultas consulta) {
-        // Validar que la consulta exista
         Consultas existente = consultasDAO.buscarConsultaPorId(consulta.getId());
         if (existente == null) {
             throw new IllegalArgumentException("Consulta no encontrada");
         }
 
-        // Validar que no se modifiquen datos críticos
         if (!existente.getCita_id().equals(consulta.getCita_id()) ||
                 !existente.getVeterinario_id().equals(consulta.getVeterinario_id())) {
             throw new IllegalArgumentException("No se puede modificar la cita o veterinario de una consulta existente");
