@@ -1,9 +1,11 @@
 package com.mycompany.proyectojava.model.entities.Mascota;
 
 import com.mycompany.proyectojava.model.entities.Dueno.Dueno;
+import com.mycompany.proyectojava.model.entities.HistorialExamen.ElementosHistorial;
 import com.mycompany.proyectojava.model.entities.Razas.Razas;
 
 import java.util.Date;
+import java.util.List;
 
 public class Mascota {
     private Integer id;
@@ -21,6 +23,26 @@ public class Mascota {
     private Dueno dueno;
     private Razas raza;
     private String estado;
+    private List<ElementosHistorial> elementos;
+
+    public Mascota(Integer id, Integer dueno_id, String nombre, Integer raza_id, Date fecha_nacimiento, String sexo, String microchip, String foto_url, String alergias, String condiciones_preexistentes, Double peso_kg, String notas_medicas, Dueno dueno, Razas raza, String estado, List<ElementosHistorial> elementos) {
+        this.id = id;
+        this.dueno_id = dueno_id;
+        this.nombre = nombre;
+        this.raza_id = raza_id;
+        this.fecha_nacimiento = fecha_nacimiento;
+        this.sexo = sexo;
+        this.microchip = microchip;
+        this.foto_url = foto_url;
+        this.alergias = alergias;
+        this.condiciones_preexistentes = condiciones_preexistentes;
+        this.peso_kg = peso_kg;
+        this.notas_medicas = notas_medicas;
+        this.dueno = dueno;
+        this.raza = raza;
+        this.estado = estado;
+        this.elementos = elementos;
+    }
 
     public Mascota(Integer id, Integer dueno_id, String nombre, Integer raza_id, Date fecha_nacimiento, String sexo, String microchip, String foto_url, String alergias, String condiciones_preexistentes, Double peso_kg, String notas_medicas, Dueno dueno, Razas raza, String estado) {
         this.id = id;
@@ -59,6 +81,18 @@ public class Mascota {
 
     }
     // Getters and Setters
+
+    public List<ElementosHistorial> getElementos() {
+        return elementos;
+    }
+
+    public void setElementos(List<ElementosHistorial> elementos) {
+        this.elementos = elementos;
+    }
+
+    public Mascota(int aInt) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 
     public String getEstado() {
         return estado;

@@ -1,6 +1,8 @@
 package com.mycompany.proyectojava.repository.Mascota;
 
 import com.mycompany.proyectojava.config.database.ConexionDBSingleton;
+import com.mycompany.proyectojava.model.entities.Citas.Citas;
+import com.mycompany.proyectojava.model.entities.Consultas.Consultas;
 import com.mycompany.proyectojava.model.entities.Dueno.Dueno;
 import com.mycompany.proyectojava.model.entities.Mascota.Mascota;
 import com.mycompany.proyectojava.model.entities.Razas.Razas;
@@ -283,6 +285,54 @@ public class MascotaDAO implements IMascota {
             pstmt.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException("Error al eliminar una mascota ID: " + microchip + " " + e);
+        }
+    }
+
+    @Override
+    public void historialClinicoMascota(String microchip) {
+        Mascota mascota = null;
+        String sql = """
+                     SELECT m.nombre,\s
+                            d.nombre_completo,\s
+                            c.id,\s
+                            c.mascota_id,\s
+                            c.fecha_hora,\s
+                            c.motivo,\s
+                            c.observaciones,\s
+                            c2.diagnostico\s
+                        FROM mascotas m
+                        JOIN duenos d on m.dueno_id = d.id 
+                        JOIN citas c on m.id  = c.mascota_id 
+                        JOIN consultas c2 ON c.id = c2.cita_id 
+                        WHERE m.microchip = ?;
+                     """;
+        
+        try (PreparedStatement pstmt = conexion.prepareStatement(sql)){
+            pstmt.setString(1, microchip);
+            try (ResultSet re = pstmt.executeQuery()) {
+                if (re.next()) {
+                    Dueno dueno = new Dueno();
+                    dueno.setNombre(re.getString("nombre_completo"));
+                    
+                    Citas citas = new Citas();
+                    citas.setId(re.getInt("id"));
+                    citas.setMascota_id(re.getInt("mascota_id"));
+                    citas.setFecha_hora(re.getDate("fecha_hora"));
+                    citas.setMotivo(re.getString("motivo"));
+                    citas.setObservaciones(re.getString("observaciones"));
+                    
+                    Consultas consultas = new Consultas();
+                    consultas.setDiagnostico(re.getString("diagnostico"));
+                    
+                    mascota = new Mascota(
+                            re.getInt("id")
+                    );
+                } else {
+                    System.out.println("Error al consultar el historial");
+                }
+            }
+        }catch (SQLException e){
+            throw new RuntimeException("Error al consultar el historial de mascotas: " + e);
         }
     }
 

@@ -28,8 +28,11 @@ public interface IMascota {
 
 //    -----------------------------------------------------------7. ELIMINAR MASCOTA ------------------------------------------------
     void eliminarMascota(String microchip);
+    
+// ------------------------------------------------------------------------------------------------------------------
 
-
+    void historialClinicoMascota(String microchip);
+    
 }
 
 

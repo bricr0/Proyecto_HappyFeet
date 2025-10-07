@@ -71,6 +71,15 @@ public class MascotaControlller {
         mascotaDao.eliminarMascota(microchip);
         System.out.println("Mascota eliminada con éxito");
     }
+    
+    
+    public void historialMascota(String microchip){
+        if (microchip == null || microchip.trim().isEmpty()) {
+            throw new IllegalArgumentException("Microchip inválido");
+        }
+        mascotaDao.historialClinicoMascota(microchip);
+    }
+    
 //    -------------------------------------------------------- VALIDACIONES ------------------------------------------------
 
     private boolean validarMascota(Mascota mascota) {

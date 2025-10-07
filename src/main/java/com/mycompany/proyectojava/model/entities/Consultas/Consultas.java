@@ -21,6 +21,10 @@ public class Consultas {
         this.fecha_registro = fecha_registro;
     }
 
+    public Consultas() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     public Date getFecha_registro() {
         return fecha_registro;
     }

@@ -41,6 +41,7 @@ public class MascotaView {
                     2. Listar mascotas.
                     3. Actualizar una mascota.
                     4. Eliminar una mascota.
+                    5. Ver historial medico completo.
                     0. salir
                     >>> Elige una opcion:""");
             try {
@@ -51,6 +52,7 @@ public class MascotaView {
                 funciones.put("2", this::menuListasMascotas);
                 funciones.put("3", this::actualizarMascota);
                 funciones.put("4", this::eliminarMascota);
+                funciones.put("5", this::historial);
                 funciones.put("0", () -> System.out.println("Gracias por elegirnos ..."));
 
                 Runnable funcion = funciones.get(opcion);
@@ -72,6 +74,10 @@ public class MascotaView {
 
 //    --------------------------------------------------------SUBMENU LISTAR MASCOTAS ------------------------------------------------
 
+    
+    
+    
+    
     private void menuListasMascotas() {
         String opcion = "";
         while (!opcion.equals("0")) {
@@ -110,6 +116,16 @@ public class MascotaView {
 
 //    -----------------------------------------------------------1. AGREGAR MASCOTA ------------------------------------------------
 
+    private void historial(){
+        System.out.println("-------------HISTORIAL MEDICO");
+        
+        System.out.print("Microchip de la mascota: ");
+        String microchip = input.nextLine();
+        
+        controller.historialMascota(microchip);
+    }
+    
+    
     private void agregarMascota() {
         System.out.println("\n\n ----- 2. AGREGAR UNA MASCOTA\n");
 

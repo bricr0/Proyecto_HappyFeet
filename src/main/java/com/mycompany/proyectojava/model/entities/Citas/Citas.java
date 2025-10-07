@@ -20,6 +20,10 @@ public class Citas {
         this.observaciones = observaciones;
     }
 
+    public Citas() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     public Integer getId() {
         return id;
     }
