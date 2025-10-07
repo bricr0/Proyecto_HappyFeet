@@ -5,7 +5,8 @@ El sistema **Happy Feet** es una aplicación de escritorio desarrollada para la 
 Su objetivo principal es facilitar el registro, administración y consulta de la información relacionada con los dueños, pacientes (mascotas), citas médicas y servicios veterinarios.  
 
 Este proyecto resuelve la necesidad de la veterinaria de contar con un sistema confiable que permita centralizar los datos y optimizar los procesos administrativos, evitando errores comunes derivados del manejo manual.
-
+## CAMBIOS EN TEMA DE LA RAMA EXAMEN !
+Ya no hace factura por Txt, si no por Consola
 ---
 
 ## ⚙️ Tecnologías Utilizadas
