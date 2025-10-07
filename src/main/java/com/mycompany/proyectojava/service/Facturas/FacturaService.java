@@ -1,6 +1,7 @@
 package com.mycompany.proyectojava.service.Facturas;
 
-import com.mycompany.proyectojava.Util.Factura.FacturaTxtGenerator;
+import com.mycompany.proyectojava.Util.Factura.FacturaConsolaGenerator;
+import com.mycompany.proyectojava.Util.Factura.FacturaNoExisteConsolaGenerator;
 import com.mycompany.proyectojava.model.entities.Dueno.Dueno;
 import com.mycompany.proyectojava.model.entities.Factura.Factura;
 import com.mycompany.proyectojava.repository.Dueno.DuenoDAO;
@@ -11,12 +12,14 @@ import java.util.List;
 public class FacturaService {
     private IFacturaDAO facturaDAO;
     private DuenoDAO duenoDAO;
-    private FacturaTxtGenerator txtGenerator;
+    private FacturaConsolaGenerator consolaGenerator;
+    private FacturaNoExisteConsolaGenerator NoExisteConsolaGenerator;
 
     public FacturaService() {
         this.facturaDAO = new IFacturaDAO();
         this.duenoDAO = new DuenoDAO();
-        this.txtGenerator = new FacturaTxtGenerator();
+        this.consolaGenerator = new FacturaConsolaGenerator();
+        this.NoExisteConsolaGenerator = new FacturaNoExisteConsolaGenerator();
     }
 
     public void generarFacturaPorDocumento(String documentoDueno) {
@@ -32,12 +35,14 @@ public class FacturaService {
         List<Factura> facturas = facturaDAO.obtenerFacturasPorDuenoId(duenoId);
 
         if (facturas.isEmpty()) {
-            System.out.println("⚠️ No hay facturas registradas para este dueño");
+            for (Factura factura : facturas) {
+              FacturaNoExisteConsolaGenerator.generar(factura, dueno);
+            }
         } else {
             for (Factura factura : facturas) {
-                FacturaTxtGenerator.generar(factura, dueno);
+                FacturaConsolaGenerator.generar(factura, dueno);
             }
-            System.out.println("✅ Facturas exportadas en TXT para el dueño: " + dueno.getNombre());
+            System.out.println("✅ Facturas exportadas en Consola para el dueño: " + dueno.getNombre());
         }
     }
 

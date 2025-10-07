@@ -6,4 +6,4 @@ public class ProyectoJava {
         MenuPrincipal menuPrincipal = new MenuPrincipal();
         menuPrincipal.mostrar();
     }
-}
+}   
