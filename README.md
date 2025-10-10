@@ -8,7 +8,7 @@ Este proyecto resuelve la necesidad de la veterinaria de contar con un sistema c
 
 # EXAMEN CAMPUS 
 
-## Ubicacion
+## Ubicacion:
 El examen de Juan Sebastian Martinez Tapias de C3 se encuentra en la rama "Examen-Sebastian"
 El examen de Brigitte Claros Viola de C3 se encuentra en la rama "Examen-Brian"
 
